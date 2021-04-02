@@ -1,7 +1,11 @@
 import React, { createRef, useRef, useEffect, memo, MutableRefObject } from 'react'
 import { typer } from './typical'
 
-type Line = [number, ...Array<string | number>]
+type Line = {
+	speed: number
+	line: Array<string | number>
+	then?: () => void
+}
 type TermProps = {
 	lines: Line[]
 }
@@ -28,7 +32,10 @@ const Term: React.FC<TermProps> = (props: TermProps) => {
 				}
 				const ref = rc[ii].current
 				try {
-					await typer(ref, ...line)
+					await typer(ref, line.speed, ...line.line)
+					if (line.then) {
+						line.then()
+					}
 				} catch (err) {
 					console.warn('line failed:', err)
 					throw err
@@ -38,7 +45,7 @@ const Term: React.FC<TermProps> = (props: TermProps) => {
 		prom().catch(err => {
 			console.warn('typing failed:', err)
 		})
-	})
+	}, [])
 	return (
 		<>
 			{refs.current.map((ref, ii) => (
