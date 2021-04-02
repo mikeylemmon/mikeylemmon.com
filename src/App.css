@@ -1,38 +1,82 @@
-.App {
-  text-align: center;
+/* @font-face {
+	font-family: SwedenSansBook;
+	src:
+		local('SwedenSansBook'),
+		url('./fonts/SwedenSansBook.woff2') format('woff2'),
+		url('./fonts/SwedenSansBook.woff') format('woff');
+} */
+
+@font-face {
+	font-family: SwedenSansRegular;
+	src:
+		local('SwedenSansRegular'),
+		url('./fonts/SwedenSansRegular.woff2') format('woff2'),
+		url('./fonts/SwedenSansRegular.woff') format('woff');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+	font-family: NotoMono;
+	src:
+		local('NotoMono'),
+		url('./fonts/NotoMono-Regular.ttf') format('ttf');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* @font-face {
+	font-family: SwedenSansSemiBold;
+	src:
+		local('SwedenSansSemiBold'),
+		url('./fonts/SwedenSansSemiBold.woff2') format('woff2'),
+		url('./fonts/SwedenSansSemiBold.woff') format('woff');
+} */
+
+@font-face {
+	font-family: SwedenSansBold;
+	src:
+		local('SwedenSansBold'),
+		url('./fonts/SwedenSansBold.woff2') format('woff2'),
+		url('./fonts/SwedenSansBold.woff') format('woff');
+}
+
+body {
+	color: white;
+	font-family: 'SwedenSansRegular', 'Trebuchet MS', Tahoma, Verdana, Helvetica, Arial;
+	font-size: 26px;
+	height: 5000px;
+}
+
+h1 {
+	font-weight: 500;
+	font-family: 'SwedenSansBold', 'Trebuchet MS', Tahoma, Verdana, Helvetica, Arial;
+	font-size: 90px;
+}
+
+h2 {
+	font-weight: 500;
+	font-family: 'SwedenSansRegular', 'Trebuchet MS', Tahoma, Verdana, Helvetica, Arial;
+	font-size: 60px;
+}
+
+pre {
+	font-family: 'NotoMono', 'Courier New', monospace;
+	color: #ffff00;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
