@@ -19,15 +19,18 @@ export type HomeContentStage =
 
 type HomeContentProps = {
 	stage: HomeContentStage
+	style: object
+	className: string
 }
 
-const common = {
-	style: { zIndex: -1 },
-	className: 'fixed top-48 left-0 h-minus48 md:top-0 md:h-full w-full object-cover object-center',
-}
+// const common = {
+// 	style: { zIndex: -1 },
+// 	className: 'fixed top-48 left-0 h-minus48 md:top-0 md:h-full w-full object-cover object-center',
+// }
 
 const HomeContent: React.FC<HomeContentProps> = props => {
-	const { stage } = props
+	const { stage, className, style } = props
+	const common = { className, style }
 	if (stage.match(/mikey/)) {
 		const src = `/images/${stage}.jpeg`
 		return <img {...{ ...common }} src={src} alt='Mikey' />
@@ -37,7 +40,7 @@ const HomeContent: React.FC<HomeContentProps> = props => {
 		const src = `/videos/${stage}.${ext}`
 		const muted = true // !stage.match(/thrive1/)
 		return (
-			<video {...{ ...common }} autoPlay={true} loop={true} muted={muted}>
+			<video {...{ ...common }} autoPlay={true} loop={true} muted={muted} playsInline={true}>
 				<source src={src} type='video/mp4' />
 			</video>
 		)

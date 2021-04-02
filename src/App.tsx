@@ -4,12 +4,30 @@ import HomeContent, { HomeContentStage } from './HomeContent'
 
 const App: React.FC = () => {
 	const [stage, setStage] = useState<HomeContentStage>('intro')
+	const termClasses = [
+		'bg-gray-800',
+		'md:bg-black',
+		'md:bg-opacity-80',
+		'py-4',
+		'px-8',
+		'overflow-y-hidden',
+		'fixed',
+		'bottom-minus32',
+		'md:bottom-minus48',
+		'min-h-32',
+		'md:min-h-48',
+		'max-w-full',
+		'left-0',
+		'right-0',
+		'md:right-auto',
+		'flex',
+		'flex-col',
+		'items-start',
+		'justify-end',
+	].join(' ')
 	return (
 		<div className='App'>
-			<div
-				className='bg-gray-800 md:bg-black md:bg-opacity-80 py-4 px-8 overflow-y-hidden fixed bottom-minus48 min-h-48 left-0 right-0 md:right-auto flex flex-col items-start justify-end'
-				// style={{ minHeight: '12rem' }}
-			>
+			<div className={termClasses}>
 				<Term
 					lines={[
 						{ speed: 150, line: ['>', 700, '> # Hello world!', 800] },
@@ -44,7 +62,11 @@ const App: React.FC = () => {
 					]}
 				/>
 			</div>
-			<HomeContent stage={stage} />
+			<HomeContent
+				stage={stage}
+				style={{ zIndex: -1 }}
+				className='bg-black fixed left-0 top-32 md:top-0 h-minus32 md:h-full w-full object-cover object-center'
+			/>
 		</div>
 	)
 }

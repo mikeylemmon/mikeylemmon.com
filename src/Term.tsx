@@ -49,7 +49,11 @@ const Term: React.FC<TermProps> = (props: TermProps) => {
 	return (
 		<>
 			{refs.current.map((ref, ii) => (
-				<pre key={`line-${ii}`} ref={ref} className='text-white text-xl' />
+				<pre
+					key={`line-${ii}`}
+					ref={ref}
+					className='text-white text-lg md:text-xl whitespace-pre-wrap'
+				/>
 			))}
 		</>
 	)

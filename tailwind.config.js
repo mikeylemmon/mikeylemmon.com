@@ -1,11 +1,22 @@
+const colors = require('tailwindcss/colors')
 module.exports = {
 	purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
 	darkMode: false, // or 'media' or 'class'
 	theme: {
 		extend: {
-			height: { minus48: 'calc(100% - 12rem)' },
-			minHeight: { 48: '12rem' },
-			inset: { minus48: 'calc(100% - 12rem)' },
+			height: {
+				minus32: 'calc(100% - 8rem)',
+				minus48: 'calc(100% - 12rem)',
+			},
+			minHeight: {
+				32: '8rem',
+				48: '12rem',
+			},
+			inset: {
+				minus32: 'calc(100% - 8rem)',
+				minus48: 'calc(100% - 12rem)',
+			},
+			colors: { gray: colors.warmGray },
 		},
 		fontFamily: {
 			sans:
