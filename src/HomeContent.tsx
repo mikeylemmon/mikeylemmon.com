@@ -20,8 +20,7 @@ type HomeContentProps = {
 
 const vid = (props: HomeContentProps) => {
 	const { stage, style, className } = props
-	const ext = stage.match(/thrive0/) ? 'mp4' : 'mov'
-	const src = `/videos/${stage}.${ext}`
+	const src = `/videos/${stage}.mp4`
 	return (
 		<video {...{ className, style }} autoPlay={true} loop={true} muted={true} playsInline={true}>
 			<source src={src} type='video/mp4' />
