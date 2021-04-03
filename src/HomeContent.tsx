@@ -9,6 +9,8 @@ export type HomeContentStage =
 	| 'mikey5'
 	| 'thrive0'
 	| 'thrive1'
+	| 'thrive10'
+	| 'thrive11'
 
 type HomeContentProps = {
 	stage: HomeContentStage
@@ -34,14 +36,14 @@ const thrive0 = (props: HomeContentProps) => {
 		return null
 	}
 	const ss = { zIndex: stage.match(/intro|mikey/) ? zz : zz + 1 }
-	return vid({ className, stage: 'thrive0', style: ss })
+	return vid({ className, stage: 'thrive10', style: ss })
 }
 
 const thrive1 = (props: HomeContentProps) => {
 	const { className, stage, style } = props
 	const zz = style.zIndex
 	const ss = { zIndex: stage !== 'thrive1' ? zz : zz + 1 }
-	return vid({ className, stage: 'thrive1', style: ss })
+	return vid({ className, stage: 'thrive11', style: ss })
 }
 
 const mikey = (props: HomeContentProps) => {
