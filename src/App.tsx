@@ -50,12 +50,8 @@ const App: React.FC = () => {
 						{ speed: 100, line: ['>', 1000, `> # I'm into life`] },
 						{ speed: 100, line: ['>', 1000] },
 						{ speed: 100, line: ['>', 100] },
-						{ speed: 200, line: ['>', 500, '> thrive!'], then: () => setStage('thrive4') },
-						{ speed: 400, line: [' ', 12000], then: () => setStage('intro') },
-						{ speed: 10, line: [' '], then: () => setStage('thrive3') },
-						{ speed: 400, line: [' ', 9000], then: () => setStage('intro') },
-						{ speed: 10, line: [' '], then: () => setStage('thrive9') },
-						{ speed: 200, line: [' ', 5000], then: () => setStage('intro') },
+						{ speed: 200, line: ['>', 500, '> thrive!'], then: () => setStage('thrive0') },
+						{ speed: 400, line: [' ', 26000], then: () => setStage('intro') },
 						{ speed: 10, line: [' '], then: () => setStage('thrive1') },
 						// { speed: 200, line: [' ', 700, '>', 1000, '> menu', 300] },
 						// { speed: 10, line: [' '] },
@@ -64,7 +60,7 @@ const App: React.FC = () => {
 			</div>
 			<HomeContent
 				stage={stage}
-				style={{ zIndex: -1 }}
+				style={{ zIndex: -3 }}
 				className='bg-black fixed left-0 top-32 md:top-0 h-minus32 md:h-full w-full object-cover object-center'
 			/>
 		</div>

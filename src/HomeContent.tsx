@@ -7,45 +7,70 @@ export type HomeContentStage =
 	| 'mikey3'
 	| 'mikey4'
 	| 'mikey5'
+	| 'thrive0'
 	| 'thrive1'
-	| 'thrive2'
-	| 'thrive3'
-	| 'thrive4'
-	| 'thrive5'
-	| 'thrive6'
-	| 'thrive7'
-	| 'thrive8'
-	| 'thrive9'
 
 type HomeContentProps = {
 	stage: HomeContentStage
-	style: object
+	style: { zIndex: number }
 	className: string
 }
 
-// const common = {
-// 	style: { zIndex: -1 },
-// 	className: 'fixed top-48 left-0 h-minus48 md:top-0 md:h-full w-full object-cover object-center',
-// }
+const vid = (props: HomeContentProps) => {
+	const { stage, style, className } = props
+	const ext = stage.match(/thrive0/) ? 'mp4' : 'mov'
+	const src = `/videos/${stage}.${ext}`
+	return (
+		<video {...{ className, style }} autoPlay={true} loop={true} muted={true} playsInline={true}>
+			<source src={src} type='video/mp4' />
+		</video>
+	)
+}
+
+const thrive0 = (props: HomeContentProps) => {
+	const { className, stage, style } = props
+	const zz = style.zIndex
+	if (stage === 'thrive1') {
+		return null
+	}
+	const ss = { zIndex: stage.match(/intro|mikey/) ? zz : zz + 1 }
+	return vid({ className, stage: 'thrive0', style: ss })
+}
+
+const thrive1 = (props: HomeContentProps) => {
+	const { className, stage, style } = props
+	const zz = style.zIndex
+	const ss = { zIndex: stage !== 'thrive1' ? zz : zz + 1 }
+	return vid({ className, stage: 'thrive1', style: ss })
+}
+
+const mikey = (props: HomeContentProps) => {
+	const { className, stage, style } = props
+	if (!stage.match(/mikey/)) {
+		return null
+	}
+	const src = `/images/${stage}.jpeg`
+	const ss = { zIndex: style.zIndex + 1 }
+	return <img {...{ className, src, style: ss, alt: 'Mikey' }} />
+}
+
+const intro = (props: HomeContentProps) => {
+	const { className, stage, style } = props
+	if (!stage.match(/intro/)) {
+		return null
+	}
+	return <div className={className + ' bg-gray-700'} style={{ zIndex: style.zIndex + 1 }} />
+}
 
 const HomeContent: React.FC<HomeContentProps> = props => {
-	const { stage, className, style } = props
-	const common = { className, style }
-	if (stage.match(/mikey/)) {
-		const src = `/images/${stage}.jpeg`
-		return <img {...{ ...common }} src={src} alt='Mikey' />
-	}
-	if (stage.match(/thrive/)) {
-		const ext = stage.match(/thrive9/) ? 'mp4' : 'mov'
-		const src = `/videos/${stage}.${ext}`
-		const muted = true // !stage.match(/thrive1/)
-		return (
-			<video {...{ ...common }} autoPlay={true} loop={true} muted={muted} playsInline={true}>
-				<source src={src} type='video/mp4' />
-			</video>
-		)
-	}
-	return <div className={common.className + ' bg-gray-700'} style={common.style} />
+	return (
+		<div>
+			{intro(props)}
+			{mikey(props)}
+			{thrive0(props)}
+			{thrive1(props)}
+		</div>
+	)
 }
 
 export default HomeContent
