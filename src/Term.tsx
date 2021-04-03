@@ -1,4 +1,4 @@
-import React, { createRef, useRef, useEffect, memo, MutableRefObject } from 'react'
+import React, { createRef, useEffect, useRef, memo, MutableRefObject } from 'react'
 import { typer } from './typical'
 
 type Line = {
@@ -45,6 +45,7 @@ const Term: React.FC<TermProps> = (props: TermProps) => {
 		prom().catch(err => {
 			console.warn('typing failed:', err)
 		})
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 	return (
 		<>

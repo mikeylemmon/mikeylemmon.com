@@ -57,8 +57,8 @@ const App: React.FC = () => {
 						{ speed: 10, line: [' '], then: () => setStage('thrive9') },
 						{ speed: 200, line: [' ', 5000], then: () => setStage('intro') },
 						{ speed: 10, line: [' '], then: () => setStage('thrive1') },
-						{ speed: 200, line: [' ', 700, '>', 1000, '> menu', 300] },
-						{ speed: 10, line: [' '] },
+						// { speed: 200, line: [' ', 700, '>', 1000, '> menu', 300] },
+						// { speed: 10, line: [' '] },
 					]}
 				/>
 			</div>
