@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 export type HomeContentStage =
 	| 'intro'
@@ -7,8 +7,6 @@ export type HomeContentStage =
 	| 'mikey3'
 	| 'mikey4'
 	| 'mikey5'
-	| 'thrive0'
-	| 'thrive1'
 	| 'thrive10'
 	| 'thrive11'
 
@@ -16,36 +14,46 @@ type HomeContentProps = {
 	stage: HomeContentStage
 	style: { zIndex: number }
 	className: string
+	srcStage?: string
 }
 
-const vid = (props: HomeContentProps) => {
-	const { stage, style, className } = props
-	const src = `/videos/${stage}.mp4`
+const Vid: React.FC<HomeContentProps> = (props: HomeContentProps) => {
+	const { srcStage, stage, style, className } = props
+	const ref: React.MutableRefObject<HTMLVideoElement | null> = useRef(null)
+	useEffect(() => {
+		if (stage === srcStage && ref.current) {
+			ref.current.play()
+		}
+	}, [srcStage, stage])
+	const src = `/videos/${srcStage}.mp4`
 	return (
-		<video {...{ className, style }} autoPlay={true} loop={true} muted={true} playsInline={true}>
+		<video {...{ className, style }} ref={ref} loop={true} muted={true} playsInline={true}>
 			<source src={src} type='video/mp4' />
 		</video>
 	)
 }
 
-const thrive0 = (props: HomeContentProps) => {
+const Thrive10: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	const { className, stage, style } = props
-	const zz = style.zIndex
-	if (stage === 'thrive1') {
+	if (stage === 'thrive11') {
 		return null
 	}
-	const ss = { zIndex: stage.match(/intro|mikey/) ? zz : zz + 1 }
-	return vid({ className, stage: 'thrive10', style: ss })
-}
-
-const thrive1 = (props: HomeContentProps) => {
-	const { className, stage, style } = props
 	const zz = style.zIndex
-	const ss = { zIndex: stage !== 'thrive1' ? zz : zz + 1 }
-	return vid({ className, stage: 'thrive11', style: ss })
+	const ss = { zIndex: stage.match(/intro|mikey/) ? zz : zz + 1 }
+	return Vid({ className, srcStage: 'thrive10', stage, style: ss })
 }
 
-const mikey = (props: HomeContentProps) => {
+const Thrive11: React.FC<HomeContentProps> = (props: HomeContentProps) => {
+	const { className, stage, style } = props
+	if (!stage.match(/thrive/)) {
+		return null
+	}
+	const zz = style.zIndex
+	const ss = { zIndex: stage !== 'thrive11' ? zz : zz + 1 }
+	return Vid({ className, srcStage: 'thrive11', stage, style: ss })
+}
+
+const Mikey: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	const { className, stage, style } = props
 	if (!stage.match(/mikey/)) {
 		return null
@@ -55,7 +63,7 @@ const mikey = (props: HomeContentProps) => {
 	return <img {...{ className, src, style: ss, alt: 'Mikey' }} />
 }
 
-const intro = (props: HomeContentProps) => {
+const Intro: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	const { className, stage, style } = props
 	if (!stage.match(/intro/)) {
 		return null
@@ -66,10 +74,10 @@ const intro = (props: HomeContentProps) => {
 const HomeContent: React.FC<HomeContentProps> = props => {
 	return (
 		<div>
-			{intro(props)}
-			{mikey(props)}
-			{thrive0(props)}
-			{thrive1(props)}
+			<Intro {...{ ...props }} />
+			<Mikey {...{ ...props }} />
+			<Thrive10 {...{ ...props }} />
+			<Thrive11 {...{ ...props }} />
 		</div>
 	)
 }
