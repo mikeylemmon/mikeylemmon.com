@@ -1,14 +1,8 @@
 import React, { createRef, useEffect, useRef, memo, MutableRefObject } from 'react'
 import { typer } from './typical'
 
-type Line = {
-	speed: number
-	line: Array<string | number>
-	then?: () => void
-}
-type TermProps = {
-	lines: Line[]
-}
+type Line = Array<string | number | (() => void) | { speed: number }>
+type TermProps = { lines: Line[] }
 
 const Term: React.FC<TermProps> = (props: TermProps) => {
 	const refs: MutableRefObject<MutableRefObject<null>[]> = useRef([])
@@ -32,10 +26,7 @@ const Term: React.FC<TermProps> = (props: TermProps) => {
 				}
 				const ref = rc[ii].current
 				try {
-					await typer(ref, line.speed, ...line.line)
-					if (line.then) {
-						line.then()
-					}
+					await typer(ref, ...line)
 				} catch (err) {
 					console.warn('line failed:', err)
 					throw err

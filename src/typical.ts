@@ -1,17 +1,25 @@
 // via https://github.com/camwiegert/typical/blob/master/typical.js
 // modified to add 'speed' parameter and convert to typescript
 
-export async function typer(node: any, speed: number, ...args: any) {
+export async function typer(node: any, ...args: any) {
+	let ss = 100
 	for (const arg of args) {
 		switch (typeof arg) {
 			case 'string':
-				await edit(node, speed, arg)
+				await edit(node, ss, arg)
 				break
 			case 'number':
 				await wait(arg)
 				break
 			case 'function':
-				await arg(node, speed, ...args)
+				await arg(node, ss, ...args)
+				break
+			case 'object':
+				if (typeof arg.speed === 'number') {
+					ss = arg.speed
+				} else {
+					console.warn('[typical] Unknown param:', arg)
+				}
 				break
 			default:
 				await arg
@@ -29,15 +37,22 @@ async function wait(ms: number) {
 }
 
 async function perform(node: any, speed: number, edits: any) {
-	for (const op of editor(edits)) {
+	const ss = speed <= 0 ? -speed : speed + speed * (Math.random() - 0.5)
+	for (const op of editor(ss, edits)) {
 		op(node)
-		await wait(speed + speed * (Math.random() - 0.5))
+		if (ss) {
+			await wait(ss)
+		}
 	}
 }
 
-export function* editor(edits: any) {
+export function* editor(speed: number, edits: any) {
 	for (const edit of edits) {
-		yield (node: any) => requestAnimationFrame(() => (node.textContent = edit))
+		if (speed) {
+			yield (node: any) => requestAnimationFrame(() => (node.textContent = edit))
+		} else {
+			yield (node: any) => (node.textContent = edit)
+		}
 	}
 }
 
