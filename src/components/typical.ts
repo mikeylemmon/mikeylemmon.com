@@ -1,9 +1,15 @@
 // via https://github.com/camwiegert/typical/blob/master/typical.js
 // modified to add 'speed' parameter and convert to typescript
 
-export async function typer(node: any, ...args: any) {
-	let ss = 100
+type TyperProps = { canceled: boolean }
+export async function typer(props: TyperProps, node: any, ...args: any) {
+	let ss = 75
 	for (const arg of args) {
+		if (props.canceled) {
+			node.textContent += '^C'
+			await wait(500)
+			return
+		}
 		switch (typeof arg) {
 			case 'string':
 				await edit(node, ss, arg)

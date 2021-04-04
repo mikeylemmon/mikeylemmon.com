@@ -35,7 +35,7 @@ const Vid: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 
 const Thrive10: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	const { className, stage, style } = props
-	if (stage === 'thrive11') {
+	if (stage.match(/thrive11|menu/)) {
 		return null
 	}
 	const zz = style.zIndex
@@ -45,7 +45,7 @@ const Thrive10: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 
 const Thrive11: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	const { className, stage, style } = props
-	if (!stage.match(/thrive/)) {
+	if (!stage.match(/thrive|menu/)) {
 		return null
 	}
 	const zz = style.zIndex
@@ -55,7 +55,7 @@ const Thrive11: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 
 const Mikey: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	const { className, stage, style } = props
-	if (!stage.match(/mikey/)) {
+	if (!stage.match(/intro|mikey/)) {
 		return null
 	}
 	const src = `/images/${stage}.jpeg`
@@ -68,7 +68,7 @@ const Intro: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	if (!stage.match(/intro/)) {
 		return null
 	}
-	return <div className={className + ' bg-gray-700'} style={{ zIndex: style.zIndex + 1 }} />
+	return <div className={className} style={{ zIndex: style.zIndex + 1 }} />
 }
 
 const HomeContent: React.FC<HomeContentProps> = props => {

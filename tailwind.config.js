@@ -8,6 +8,7 @@ module.exports = {
 				minus32: 'calc(100% - 8rem)',
 				minus48: 'calc(100% - 12rem)',
 			},
+			width: { 120: '30rem' },
 			minHeight: {
 				32: '8rem',
 				48: '12rem',
@@ -15,8 +16,12 @@ module.exports = {
 			inset: {
 				minus32: 'calc(100% - 8rem)',
 				minus48: 'calc(100% - 12rem)',
+				120: '30rem',
+				minus120: 'calc(100% - 30rem)',
 			},
 			colors: { gray: colors.warmGray },
+			boxShadow: { term: '0 5px 20px 3px rgba(0, 0, 0, 0.4)' },
+			screens: { hov: { raw: '(hover: hover)' } },
 		},
 		fontFamily: {
 			sans:
