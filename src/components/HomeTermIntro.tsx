@@ -53,7 +53,7 @@ const HomeTermIntro: React.FC<Props> = ({ className, setStage }) => (
 			['>', 100],
 			['>', 100],
 			['>', 100, '> menu'],
-			[' '],
+			['>'],
 		]}
 	/>
 )

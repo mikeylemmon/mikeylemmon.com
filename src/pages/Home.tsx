@@ -14,12 +14,11 @@ const termClasses = [
 	'px-8',
 	'overflow-y-hidden',
 	'fixed',
-	'bottom-minus32',
+	'bottom-minus28',
+	'min-h-28',
 	'md:bottom-minus48',
-	'min-h-32',
 	'md:min-h-48',
 	'left-0',
-	// 'max-w-full',
 	'w-full',
 	'md:w-120',
 	'md:right-auto',
@@ -33,7 +32,7 @@ type IsMenuProps = { isMenu: boolean }
 const LinkMenu: React.FC<IsMenuProps> = ({ isMenu }) => (
 	<Link
 		to={isMenu ? '/' : '/menu'}
-		className='text-white text-md underline md:hover:no-underline bg-purple-900 md:hover:bg-purple-700 bg-opacity-80 md:hover:bg-opacity-80 rounded-bl-lg md:rounded-bl-none md:rounded-br-lg py-3 px-6 fixed right-0 md:right-auto md:left-120 top-32 md:top-0'
+		className='text-white text-md underline md:hover:no-underline bg-purple-900 md:hover:bg-purple-700 bg-opacity-80 md:hover:bg-opacity-80 rounded-tl-lg md:rounded-tl-none md:rounded-br-lg py-3 px-6 fixed right-0 md:right-auto md:left-120 bottom-0 md:bottom-auto md:top-0'
 	>
 		{isMenu ? 'Replay intro' : 'Skip to menu'}
 	</Link>
