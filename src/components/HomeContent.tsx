@@ -21,8 +21,12 @@ const Vid: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	const { srcStage, stage, style, className } = props
 	const ref: React.MutableRefObject<HTMLVideoElement | null> = useRef(null)
 	useEffect(() => {
-		if (stage === srcStage && ref.current) {
-			ref.current.play()
+		if (ref.current) {
+			if (stage === srcStage) {
+				ref.current.play()
+			} else {
+				ref.current.pause()
+			}
 		}
 	}, [srcStage, stage])
 	const src = `/videos/${srcStage}.mp4`
@@ -59,7 +63,10 @@ const Mikey: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 		return null
 	}
 	const src = `/images/${stage}.jpeg`
-	const ss = { zIndex: style.zIndex + 1 }
+	const ss = { zIndex: style.zIndex }
+	if (stage.match(/mikey/)) {
+		ss.zIndex += 1
+	}
 	return <img {...{ className, src, style: ss, alt: 'Mikey' }} />
 }
 

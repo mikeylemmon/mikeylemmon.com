@@ -6,13 +6,12 @@ export async function typer(props: TyperProps, node: any, ...args: any) {
 	let ss = 75
 	for (const arg of args) {
 		if (props.canceled) {
-			node.textContent += '^C'
-			await wait(500)
+			// node.textContent += '^C'
 			return
 		}
 		switch (typeof arg) {
 			case 'string':
-				await edit(node, ss, arg)
+				await edit(props, node, ss, arg)
 				break
 			case 'number':
 				await wait(arg)
@@ -33,18 +32,21 @@ export async function typer(props: TyperProps, node: any, ...args: any) {
 	}
 }
 
-async function edit(node: any, speed: number, text: string) {
+async function edit(props: TyperProps, node: any, speed: number, text: string) {
 	const overlap = getOverlap(node.textContent, text)
-	await perform(node, speed, [...deleter(node.textContent, overlap), ...writer(text, overlap)])
+	await perform(props, node, speed, [...deleter(node.textContent, overlap), ...writer(text, overlap)])
 }
 
 async function wait(ms: number) {
 	await new Promise(resolve => setTimeout(resolve, ms))
 }
 
-async function perform(node: any, speed: number, edits: any) {
+async function perform(props: TyperProps, node: any, speed: number, edits: any) {
 	const ss = speed <= 0 ? -speed : speed + speed * (Math.random() - 0.5)
 	for (const op of editor(ss, edits)) {
+		if (props.canceled) {
+			return
+		}
 		op(node)
 		if (ss) {
 			await wait(ss)

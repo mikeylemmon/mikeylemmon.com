@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useRef } from 'react'
+import React, { MutableRefObject, useRef, useState } from 'react'
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -6,47 +6,36 @@ import {
 	// Link
 } from 'react-router-dom'
 import Term from 'components/Term'
+import HomeContent, { HomeContentStage } from 'components/HomeContent'
 import Home from 'pages/Home'
-
-const termClasses = [
-	// 'bg-gray-800',
-	'bg-black',
-	'bg-opacity-80',
-	'shadow-term',
-	'py-4',
-	'px-8',
-	'overflow-y-hidden',
-	'fixed',
-	'bottom-minus28',
-	'min-h-28',
-	'left-0',
-	'w-full',
-	'flex',
-	'flex-col',
-	'items-start',
-	'justify-end',
-	// 'md:rounded-br-lg',
-	// 'md:bottom-minus48',
-	// 'md:min-h-48',
-	// 'md:w-120',
-	// 'md:right-auto',
-].join(' ')
 
 const App: React.FC = () => {
 	const termRef: MutableRefObject<Term | null> = useRef(null)
+	const [stage, setStage] = useState<HomeContentStage>('intro')
+
 	return (
 		<>
-			<Term ref={termRef} className={termClasses} />
 			<Router>
+				<Term ref={termRef} />
 				<Switch>
-					<Route path='/menu'>
-						<Home termRef={termRef} />
+					<Route exact path='/home'>
+						<Home termRef={termRef} setStage={setStage} />
 					</Route>
 					<Route path='/'>
-						<Home termRef={termRef} />
+						<Home termRef={termRef} setStage={setStage} />
 					</Route>
 				</Switch>
 			</Router>
+			<HomeContent
+				stage={stage}
+				style={{ zIndex: -3 }}
+				className='bg-gray-700 fixed left-0 top-0 h-full w-full object-cover object-center'
+			/>
+			<div className='h-screen' />
+			<div className='bg-black bg-opacity-80 text-white text-xs w-full px-8 py-4 flex flex-row place-content-between'>
+				<p>Mikey Lemmon &copy; 2021</p>
+				<p>mikey at mikeylemmon.com</p>
+			</div>
 		</>
 	)
 }

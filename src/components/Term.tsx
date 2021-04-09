@@ -3,19 +3,66 @@ import React, { createRef, MutableRefObject } from 'react'
 import { typer } from './typical'
 
 type Line = Array<string | number | (() => void) | { speed: number }>
-type TermProps = { className: string }
+type TermProps = {}
 type TermSeq = {
 	lines: Line[]
 	refs: MutableRefObject<null>[]
 }
-type TermState = { seqs: TermSeq[] }
+type TermState = { seqs: TermSeq[]; links: JSX.Element[] }
+
+const termHeight = '20'
+
+const termClasses = [
+	// 'bg-gray-800',
+	'bg-black',
+	'bg-opacity-80',
+	// 'shadow-term',
+	'pt-4',
+	'px-8',
+	'overflow-y-hidden',
+	'absolute',
+	'left-0',
+	'w-full',
+	'flex',
+	'flex-col',
+	'items-start',
+	'justify-end',
+	// 'md:rounded-br-lg',
+	// 'md:bottom-minus48',
+	// 'md:min-h-48',
+	// 'md:w-120',
+	// 'md:right-auto',
+].join(' ')
+const termClassesNoLinks = termClasses + ' ' + [`bottom-minus${termHeight}`, `min-h-${termHeight}`].join(' ')
+const termClassesLinks = [
+	'bg-black',
+	'bg-opacity-80',
+	// 'shadow-term',
+	'pt-2',
+	'pb-4',
+	'px-8',
+	'absolute',
+	`top-${termHeight}`,
+	'left-0',
+	'w-full',
+	'max-w-full',
+	'flex',
+	'flex-auto',
+	'flex-col',
+	'space-y-2',
+	'md:flex-row',
+	'md:space-x-4',
+	'md:space-y-0',
+	// 'items-start',
+	// 'justify-end',
+].join(' ')
 
 class Term extends React.Component<TermProps, TermState> {
 	currentSeq: { canceled: boolean } | null = null
 
 	constructor(props: TermProps) {
 		super(props)
-		this.state = { seqs: [] } as TermState
+		this.state = { seqs: [], links: [] } as TermState
 		console.log(`<Term> constructed`)
 	}
 
@@ -34,6 +81,10 @@ class Term extends React.Component<TermProps, TermState> {
 			this.currentSeq.canceled = true
 			console.log(`<Term> Stopping`)
 		}
+	}
+
+	setLinks(...links: JSX.Element[]) {
+		this.setState({ links })
 	}
 
 	componentDidMount() {
@@ -71,8 +122,8 @@ class Term extends React.Component<TermProps, TermState> {
 	}
 
 	render() {
-		const { className } = this.props
-		const { seqs } = this.state
+		// const { className } = this.props
+		const { seqs, links } = this.state
 		const elems: JSX.Element[] = []
 		for (let ss = 0; ss < seqs.length; ss++) {
 			elems.push(
@@ -85,7 +136,12 @@ class Term extends React.Component<TermProps, TermState> {
 				)),
 			)
 		}
-		return <div className={className}>{elems}</div>
+		return (
+			<>
+				<div className={termClassesNoLinks}>{elems}</div>
+				<div className={termClassesLinks}>{links}</div>
+			</>
+		)
 	}
 }
 

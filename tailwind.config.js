@@ -5,17 +5,23 @@ module.exports = {
 	theme: {
 		extend: {
 			height: {
+				minus20: 'calc(100% - 5rem)',
+				minus24: 'calc(100% - 6rem)',
 				minus28: 'calc(100% - 7rem)',
 				minus32: 'calc(100% - 8rem)',
 				minus48: 'calc(100% - 12rem)',
 			},
 			width: { 120: '30rem' },
 			minHeight: {
+				20: '5rem',
+				24: '6rem',
 				28: '7rem',
 				32: '8rem',
 				48: '12rem',
 			},
 			inset: {
+				minus20: 'calc(100% - 5rem)',
+				minus24: 'calc(100% - 6rem)',
 				minus28: 'calc(100% - 7rem)',
 				minus32: 'calc(100% - 8rem)',
 				minus48: 'calc(100% - 12rem)',
