@@ -3,13 +3,14 @@ import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { HomeContentStage } from 'components/HomeContent'
 import Term from 'components/Term'
 import TermLink from 'components/TermLink'
+import links from 'pages/songs-and-poems/links'
 
 type Props = RouteComponentProps & {
 	termRef: MutableRefObject<Term | null>
 	setStage: (stage: HomeContentStage) => void
 }
 
-const Home: React.FC<Props> = ({ termRef, setStage }) => {
+const Songs: React.FC<Props> = ({ termRef, setStage }) => {
 	useEffect(() => {
 		const term = termRef.current
 		if (!term) {
@@ -21,24 +22,16 @@ const Home: React.FC<Props> = ({ termRef, setStage }) => {
 					setStage('thrive11')
 					term.setLinks()
 				},
-				'> menu',
+				{ speed: 30 },
+				'> menu songs-and-poems',
 				() =>
 					term.setLinks(
-						<TermLink key='menu-0' to='/gallery'>
-							{'Images and Videos'}
-						</TermLink>,
-						<TermLink key='menu-1' to='/songs-and-poems'>
-							{'Songs and Poems'}
-						</TermLink>,
-						<TermLink key='menu-2' to='/projects'>
-							{'Projects and Experiments'}
-						</TermLink>,
-						<TermLink key='menu-3' to='/about'>
-							{'About Me'}
-						</TermLink>,
-						<TermLink key='menu-4' to='/'>
-							{'Replay intro'}
-						</TermLink>,
+						<TermLink key='back' to='/menu' soft>&lt; Home</TermLink>,
+						...links.map(({ to, title }, ii) => (
+							<TermLink key={`link-${ii}`} to={to}>
+								{title}
+							</TermLink>
+						)),
 					),
 			],
 		])
@@ -49,4 +42,4 @@ const Home: React.FC<Props> = ({ termRef, setStage }) => {
 	return null
 }
 
-export default withRouter(Home)
+export default withRouter(Songs)

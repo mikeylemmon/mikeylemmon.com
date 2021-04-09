@@ -4,6 +4,25 @@ module.exports = {
 	darkMode: false, // or 'media' or 'class'
 	theme: {
 		extend: {
+			width: {
+				120: '30rem',
+				md: '28rem',
+				lg: '32rem',
+				xl: '36rem',
+				'2xl': '42rem',
+				'3xl': '48rem',
+				'4xl': '56rem',
+				'5xl': '64rem',
+			},
+			maxWidth: {
+				md: '28rem',
+				lg: '32rem',
+				xl: '36rem',
+				'2xl': '42rem',
+				'3xl': '48rem',
+				'4xl': '56rem',
+				'5xl': '64rem',
+			},
 			height: {
 				minus20: 'calc(100% - 5rem)',
 				minus24: 'calc(100% - 6rem)',
@@ -11,13 +30,20 @@ module.exports = {
 				minus32: 'calc(100% - 8rem)',
 				minus48: 'calc(100% - 12rem)',
 			},
-			width: { 120: '30rem' },
 			minHeight: {
 				20: '5rem',
 				24: '6rem',
 				28: '7rem',
 				32: '8rem',
 				48: '12rem',
+				sm: '24rem',
+				md: '28rem',
+				lg: '32rem',
+				xl: '36rem',
+				'2xl': '42rem',
+				'3xl': '48rem',
+				'4xl': '56rem',
+				'5xl': '64rem',
 			},
 			inset: {
 				minus20: 'calc(100% - 5rem)',
@@ -28,7 +54,7 @@ module.exports = {
 				120: '30rem',
 				minus120: 'calc(100% - 30rem)',
 			},
-			colors: { gray: colors.warmGray },
+			colors: { gray: colors.warmGray, cool: colors.coolGray },
 			boxShadow: { term: '0 5px 20px 3px rgba(0, 0, 0, 0.4)' },
 			screens: { hov: { raw: '(hover: hover)' } },
 		},

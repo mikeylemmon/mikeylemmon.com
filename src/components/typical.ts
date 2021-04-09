@@ -4,6 +4,7 @@
 type TyperProps = { canceled: boolean }
 export async function typer(props: TyperProps, node: any, ...args: any) {
 	let ss = 75
+	let didFirstWrite = false
 	for (const arg of args) {
 		if (props.canceled) {
 			// node.textContent += '^C'
@@ -11,6 +12,10 @@ export async function typer(props: TyperProps, node: any, ...args: any) {
 		}
 		switch (typeof arg) {
 			case 'string':
+				if (!didFirstWrite) {
+					node.textContent = ''
+					didFirstWrite = true
+				}
 				await edit(props, node, ss, arg)
 				break
 			case 'number':

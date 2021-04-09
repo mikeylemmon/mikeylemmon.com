@@ -2,8 +2,9 @@
 import React, { createRef, MutableRefObject } from 'react'
 import { typer } from './typical'
 
-type Line = Array<string | number | (() => void) | { speed: number }>
-type TermProps = {}
+type TermProps = { className?: string, style?: any, preClassName?: string, preFill?: string }
+
+export type Line = Array<string | number | (() => void) | { speed: number }>
 type TermSeq = {
 	lines: Line[]
 	refs: MutableRefObject<null>[]
@@ -27,6 +28,8 @@ const termClasses = [
 	'flex-col',
 	'items-start',
 	'justify-end',
+	'text-white',
+	'md:text-xl',
 	// 'md:rounded-br-lg',
 	// 'md:bottom-minus48',
 	// 'md:min-h-48',
@@ -41,8 +44,8 @@ const termClassesLinks = [
 	'pt-2',
 	'pb-4',
 	'px-8',
-	'absolute',
-	`top-${termHeight}`,
+	// 'relative',
+	// `top-${termHeight}`,
 	'left-0',
 	'w-full',
 	'max-w-full',
@@ -50,6 +53,7 @@ const termClassesLinks = [
 	'flex-auto',
 	'flex-col',
 	'space-y-2',
+	// `mb-${termHeight}`,
 	'md:flex-row',
 	'md:space-x-4',
 	'md:space-y-0',
@@ -63,11 +67,11 @@ class Term extends React.Component<TermProps, TermState> {
 	constructor(props: TermProps) {
 		super(props)
 		this.state = { seqs: [], links: [] } as TermState
-		console.log(`<Term> constructed`)
+		// console.log(`<Term> constructed`)
 	}
 
 	typeLines(lines: Line[]) {
-		console.log(`<Term> Will type ${lines.length} lines`)
+		// console.log(`<Term> Will type ${lines.length} lines`)
 		this.stop()
 		const seq: TermSeq = { lines, refs: [] }
 		for (let ii = 0; ii < lines.length; ii++) {
@@ -79,23 +83,18 @@ class Term extends React.Component<TermProps, TermState> {
 	stop() {
 		if (this.currentSeq) {
 			this.currentSeq.canceled = true
-			console.log(`<Term> Stopping`)
+			// console.log(`<Term> Stopping`)
 		}
 	}
 
 	setLinks(...links: JSX.Element[]) {
-		this.setState({ links })
-	}
-
-	componentDidMount() {
-		const { seqs } = this.state
-		console.log(`<Term> Did mount with ${seqs.length} seqs`)
+		this.setState({ links: links })
 	}
 
 	componentDidUpdate(_: any, prevState: TermState) {
 		const { seqs } = this.state
 		if (prevState.seqs.length === seqs.length || seqs.length === 0) {
-			console.log(`<Term> Ignoring update for ${seqs.length} seqs`)
+			// console.log(`<Term> Ignoring update for ${seqs.length} seqs`)
 			return
 		}
 		this._typeLines()
@@ -106,7 +105,7 @@ class Term extends React.Component<TermProps, TermState> {
 		this.currentSeq = typerProps
 		const { seqs } = this.state
 		const { lines, refs } = seqs[seqs.length - 1]
-		console.log(`<Term> Typing ${lines.length} lines`)
+		// console.log(`<Term> Typing ${lines.length} lines`)
 		for (let ii = 0; ii < lines.length; ii++) {
 			if (typerProps.canceled) {
 				return
@@ -122,7 +121,7 @@ class Term extends React.Component<TermProps, TermState> {
 	}
 
 	render() {
-		// const { className } = this.props
+		const { className, style, preClassName, preFill } = this.props
 		const { seqs, links } = this.state
 		const elems: JSX.Element[] = []
 		for (let ss = 0; ss < seqs.length; ss++) {
@@ -131,15 +130,20 @@ class Term extends React.Component<TermProps, TermState> {
 					<pre
 						key={`line-${ss}-${ii}`}
 						ref={ref}
-						className='text-white md:text-xl whitespace-pre-wrap'
-					/>
+						className={'whitespace-pre-wrap ' + (preClassName ? preClassName : '')}
+					>{preFill ? preFill : ''}</pre>
 				)),
 			)
 		}
 		return (
 			<>
-				<div className={termClassesNoLinks}>{elems}</div>
-				<div className={termClassesLinks}>{links}</div>
+				<div key='term' className={className || termClassesNoLinks} style={{ zIndex: 10, ...{...style || {}} }}>
+					{elems}
+				</div>
+				{!className && <div key='term-space' className={`h-${termHeight}`} />}
+				{!className && <div key='term-links' className={termClassesLinks} style={{ zIndex: 10 }}>
+					{links}
+				</div>}
 			</>
 		)
 	}

@@ -34,3 +34,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+	.text-indent {
+		text-indent: -2rem;
+		padding-left: 2rem;
+	}
+}
