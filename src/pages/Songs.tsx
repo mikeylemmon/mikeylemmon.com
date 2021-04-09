@@ -22,11 +22,13 @@ const Songs: React.FC<Props> = ({ termRef, setStage }) => {
 					setStage('thrive11')
 					term.setLinks()
 				},
-				{ speed: 30 },
+				{ speed: 24 },
 				'> menu songs-and-poems',
 				() =>
 					term.setLinks(
-						<TermLink key='back' to='/menu' soft>&lt; Home</TermLink>,
+						<TermLink key='back' to='/menu' soft>
+							&lt; Home
+						</TermLink>,
 						...links.map(({ to, title }, ii) => (
 							<TermLink key={`link-${ii}`} to={to}>
 								{title}

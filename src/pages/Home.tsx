@@ -24,18 +24,18 @@ const Home: React.FC<Props> = ({ termRef, setStage }) => {
 				'> menu',
 				() =>
 					term.setLinks(
-						<TermLink key='menu-0' to='/gallery'>
-							{'Images and Videos'}
-						</TermLink>,
+						// <TermLink key='menu-0' to='/gallery' soft>
+						// 	{'Images and Videos'}
+						// </TermLink>,
 						<TermLink key='menu-1' to='/songs-and-poems'>
 							{'Songs and Poems'}
 						</TermLink>,
-						<TermLink key='menu-2' to='/projects'>
-							{'Projects and Experiments'}
-						</TermLink>,
-						<TermLink key='menu-3' to='/about'>
-							{'About Me'}
-						</TermLink>,
+						// <TermLink key='menu-2' to='/projects' soft>
+						// 	{'Projects and Experiments'}
+						// </TermLink>,
+						// <TermLink key='menu-3' to='/about' soft>
+						// 	{'About Me'}
+						// </TermLink>,
 						<TermLink key='menu-4' to='/'>
 							{'Replay intro'}
 						</TermLink>,
