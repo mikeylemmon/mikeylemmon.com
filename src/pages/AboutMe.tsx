@@ -9,7 +9,7 @@ type Props = RouteComponentProps & {
 	setStage: (stage: HomeContentStage) => void
 }
 
-const Home: React.FC<Props> = ({ termRef, setStage }) => {
+const AboutMe: React.FC<Props> = ({ termRef, setStage }) => {
 	useEffect(() => {
 		const term = termRef.current
 		if (!term) {
@@ -21,23 +21,15 @@ const Home: React.FC<Props> = ({ termRef, setStage }) => {
 					setStage('thrive11')
 					term.setLinks()
 				},
-				'> menu',
+				'> whois mikey',
+			],
+			['Mikey Lemmon <mikey@mikeylemmon.com>'],
+			[
+				'Wellington, NZ',
 				() =>
 					term.setLinks(
-						<TermLink key='menu-0' to='/gallery'>
-							{'Gallery'}
-						</TermLink>,
-						<TermLink key='menu-1' to='/songs-and-poems'>
-							{'Songs and Poems'}
-						</TermLink>,
-						// <TermLink key='menu-2' to='/projects' soft>
-						// 	{'Projects and Experiments'}
-						// </TermLink>,
-						<TermLink key='menu-3' to='/about'>
-							{'About Me'}
-						</TermLink>,
-						<TermLink key='menu-4' to='/' soft>
-							{'Replay intro'}
+						<TermLink key='back' to='/menu' soft>
+							&lt; Home
 						</TermLink>,
 					),
 			],
@@ -49,4 +41,4 @@ const Home: React.FC<Props> = ({ termRef, setStage }) => {
 	return null
 }
 
-export default withRouter(Home)
+export default withRouter(AboutMe)

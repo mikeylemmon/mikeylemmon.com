@@ -15,6 +15,7 @@ import GivenTime from 'pages/songs-and-poems/GivenTime'
 import MightyGrowing from 'pages/songs-and-poems/MightyGrowing'
 import MyBride from 'pages/songs-and-poems/MyBride'
 import Bompa from 'pages/songs-and-poems/Bompa'
+import AboutMe from 'pages/AboutMe'
 
 const App: React.FC = () => {
 	const termRef: MutableRefObject<Term | null> = useRef(null)
@@ -48,6 +49,9 @@ const App: React.FC = () => {
 					</Route>
 					<Route path='/songs-and-poems'>
 						<Songs termRef={termRef} setStage={setStage} />
+					</Route>
+					<Route path='/about'>
+						<AboutMe termRef={termRef} setStage={setStage} />
 					</Route>
 					<Route exact path='/'>
 						<Intro termRef={termRef} setStage={setStage} />
