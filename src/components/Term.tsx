@@ -2,71 +2,72 @@
 import React, { createRef, MutableRefObject } from 'react'
 import { typer } from './typical'
 
-type TermProps = { className?: string, style?: any, preClassName?: string, preFill?: string }
+type TermProps = {
+	className?: string
+	style?: any
+	preClassName?: string
+	preFill?: string
+	noLinks?: boolean
+}
 
 export type Line = Array<string | number | (() => void) | { speed: number }>
 type TermSeq = {
 	lines: Line[]
 	refs: MutableRefObject<null>[]
 }
-type TermState = { seqs: TermSeq[]; links: JSX.Element[] }
+type TermState = {
+	hidden: boolean
+	links: JSX.Element[]
+	seqs: TermSeq[]
+}
 
 const termHeight = '20'
-
 const termClasses = [
-	// 'bg-gray-800',
 	'bg-black',
 	'bg-opacity-80',
-	// 'shadow-term',
-	'pt-4',
-	'px-8',
-	'overflow-y-hidden',
-	'absolute',
-	'left-0',
-	'w-full',
-	'flex',
-	'flex-col',
-	'items-start',
-	'justify-end',
-	'text-white',
-	'md:text-xl',
-	// 'md:rounded-br-lg',
-	// 'md:bottom-minus48',
-	// 'md:min-h-48',
-	// 'md:w-120',
-	// 'md:right-auto',
-].join(' ')
-const termClassesNoLinks = termClasses + ' ' + [`bottom-minus${termHeight}`, `min-h-${termHeight}`].join(' ')
-const termClassesLinks = [
-	'bg-black',
-	'bg-opacity-80',
-	// 'shadow-term',
-	'pt-2',
-	'pb-4',
-	'px-8',
-	// 'relative',
-	// `top-${termHeight}`,
 	'left-0',
 	'w-full',
 	'max-w-full',
 	'flex',
 	'flex-auto',
 	'flex-col',
-	'space-y-2',
-	// `mb-${termHeight}`,
-	'md:flex-row',
-	'md:space-x-4',
-	'md:space-y-0',
-	// 'items-start',
-	// 'justify-end',
+	'text-white',
+	'text-base',
+	'md:text-xl',
 ].join(' ')
+const termClassesNoLinks =
+	termClasses +
+	[
+		'',
+		'items-start',
+		'justify-end',
+		'absolute',
+		'overflow-y-hidden',
+		'pt-4',
+		'px-8',
+		`bottom-minus${termHeight}`,
+		`min-h-${termHeight}`,
+	].join(' ')
+const termClassesLinks =
+	termClasses +
+	[
+		'',
+		'pt-2',
+		'pb-4',
+		'px-8',
+		`mt-${termHeight}`,
+		'space-y-2',
+		'md:flex-row',
+		'md:space-x-4',
+		'md:space-y-0',
+	].join(' ')
 
 class Term extends React.Component<TermProps, TermState> {
 	currentSeq: { canceled: boolean } | null = null
 
 	constructor(props: TermProps) {
 		super(props)
-		this.state = { seqs: [], links: [] } as TermState
+		this.state = { hidden: false, links: [], seqs: [] }
 		// console.log(`<Term> constructed`)
 	}
 
@@ -89,6 +90,16 @@ class Term extends React.Component<TermProps, TermState> {
 
 	setLinks(...links: JSX.Element[]) {
 		this.setState({ links: links })
+	}
+
+	isHidden() {
+		return this.state.hidden
+	}
+	setHidden(hidden: boolean) {
+		this.setState({ hidden })
+	}
+	toggleHidden() {
+		this.setState((prev: TermState) => ({ hidden: !prev.hidden }))
 	}
 
 	componentDidUpdate(_: any, prevState: TermState) {
@@ -121,9 +132,10 @@ class Term extends React.Component<TermProps, TermState> {
 	}
 
 	render() {
-		const { className, style, preClassName, preFill } = this.props
-		const { seqs, links } = this.state
+		const { className, style, preClassName, noLinks, preFill } = this.props
+		const { hidden, links, seqs } = this.state
 		const elems: JSX.Element[] = []
+		const zIndex = hidden ? -20 : 10
 		for (let ss = 0; ss < seqs.length; ss++) {
 			elems.push(
 				...seqs[ss].refs.map((ref, ii) => (
@@ -131,19 +143,26 @@ class Term extends React.Component<TermProps, TermState> {
 						key={`line-${ss}-${ii}`}
 						ref={ref}
 						className={'whitespace-pre-wrap ' + (preClassName ? preClassName : '')}
-					>{preFill ? preFill : ''}</pre>
+					>
+						{preFill ? preFill : ''}
+					</pre>
 				)),
 			)
 		}
 		return (
 			<>
-				<div key='term' className={className || termClassesNoLinks} style={{ zIndex: 10, ...{...style || {}} }}>
+				<div
+					key='term'
+					className={className || termClassesNoLinks}
+					style={{ zIndex, ...{ ...(style || {}) } }}
+				>
 					{elems}
 				</div>
-				{!className && <div key='term-space' className={`h-${termHeight}`} />}
-				{!className && <div key='term-links' className={termClassesLinks} style={{ zIndex: 10 }}>
-					{links}
-				</div>}
+				{!noLinks && !hidden && (
+					<div key='term-links' className={termClassesLinks} style={{ zIndex }}>
+						{links}
+					</div>
+				)}
 			</>
 		)
 	}

@@ -19,7 +19,7 @@ const Intro: React.FC<Props> = ({ termRef, setStage, history }) => {
 			[
 				() =>
 					term.setLinks(
-						<div className='fixed right-2 bottom-4'>
+						<div key='link-skip' className='fixed right-2 bottom-4'>
 							<TermLink to='/home'>{'Skip intro'}</TermLink>
 						</div>,
 					),
@@ -65,6 +65,7 @@ const Intro: React.FC<Props> = ({ termRef, setStage, history }) => {
 			['>', 100],
 			['>', 100, () => history.push('/home')],
 		])
+		return () => term.stop()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [termRef])
 	return null

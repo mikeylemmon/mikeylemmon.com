@@ -37,7 +37,7 @@ const Songs: React.FC<Props> = ({ termRef, setStage }) => {
 					),
 			],
 		])
-		return
+		return () => term.stop()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [termRef])
 

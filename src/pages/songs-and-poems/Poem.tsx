@@ -50,7 +50,7 @@ const Poem: React.FC<Props> = ({ lines, location, progress, small, setStage, ter
 					),
 			],
 		])
-		return
+		return () => term.stop()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [termRef])
 
@@ -71,35 +71,14 @@ const Poem: React.FC<Props> = ({ lines, location, progress, small, setStage, ter
 
 	const textSize = small ? 'text-xs md:text-sm' : 'text-sm'
 	return (
-		<div
-			className={[
-				'flex',
-				'flex-col',
-				'items-center',
-				'justify-start',
-				'p-4',
-				'pb-8',
-				// 'flex-1',
-				//
-				// 'bg-cool-300',
-				// 'bg-opacity-95',
-				// 'm-8',
-				// 'mt-4',
-				// 'rounded-xl',
-				// 'overflow-y-auto',
-				// 'max-w-md',
-			].join(' ')}
-		>
+		<div className={['flex', 'flex-col', 'items-center', 'justify-start', 'p-4', 'pb-8'].join(' ')}>
 			<div
 				className={[
 					'bg-cool-300',
 					'bg-opacity-95',
-					// 'm-8',
-					// 'mt-4',
 					'rounded-xl',
 					'overflow-y-auto',
 					'w-full',
-					// 'min-h-md',
 					'max-w-full',
 					'md:w-lg',
 					'flex',
@@ -114,6 +93,7 @@ const Poem: React.FC<Props> = ({ lines, location, progress, small, setStage, ter
 					className={'px-8 pt-10 pb-16 w-full max-w-md text-black'}
 					preClassName={'text-indent ' + textSize}
 					preFill=' '
+					noLinks
 				/>
 			</div>
 		</div>

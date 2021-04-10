@@ -9,6 +9,7 @@ import Term from 'components/Term'
 import HomeContent, { HomeContentStage } from 'components/HomeContent'
 import Intro from 'pages/Intro'
 import Home from 'pages/Home'
+import Gallery from 'pages/Gallery'
 import Songs from 'pages/Songs'
 import GivenTime from 'pages/songs-and-poems/GivenTime'
 import MightyGrowing from 'pages/songs-and-poems/MightyGrowing'
@@ -24,22 +25,28 @@ const App: React.FC = () => {
 			<Router>
 				<Term ref={termRef} />
 				<Switch>
-					<Route exact path='/home'>
+					<Route path='/home'>
 						<Home termRef={termRef} setStage={setStage} />
 					</Route>
-					<Route exact path='/songs-and-poems/given-time'>
+					<Route path='/gallery/:id'>
+						<Gallery termRef={termRef} setStage={setStage} />
+					</Route>
+					<Route path='/gallery'>
+						<Gallery termRef={termRef} setStage={setStage} />
+					</Route>
+					<Route path='/songs-and-poems/given-time'>
 						<GivenTime termRef={termRef} setStage={setStage} />
 					</Route>
-					<Route exact path='/songs-and-poems/a-mighty-growing'>
+					<Route path='/songs-and-poems/a-mighty-growing'>
 						<MightyGrowing termRef={termRef} setStage={setStage} />
 					</Route>
-					<Route exact path='/songs-and-poems/my-bride'>
+					<Route path='/songs-and-poems/my-bride'>
 						<MyBride termRef={termRef} setStage={setStage} />
 					</Route>
-					<Route exact path='/songs-and-poems/bompa'>
+					<Route path='/songs-and-poems/bompa'>
 						<Bompa termRef={termRef} setStage={setStage} />
 					</Route>
-					<Route exact path='/songs-and-poems'>
+					<Route path='/songs-and-poems'>
 						<Songs termRef={termRef} setStage={setStage} />
 					</Route>
 					<Route exact path='/'>
@@ -52,7 +59,7 @@ const App: React.FC = () => {
 			</Router>
 			<HomeContent
 				stage={stage}
-				style={{ zIndex: -3 }}
+				style={{ zIndex: -10 }}
 				className='bg-gray-700 fixed left-0 top-0 h-full w-full object-cover object-center'
 			/>
 		</>

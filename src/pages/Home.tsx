@@ -24,9 +24,9 @@ const Home: React.FC<Props> = ({ termRef, setStage }) => {
 				'> menu',
 				() =>
 					term.setLinks(
-						// <TermLink key='menu-0' to='/gallery' soft>
-						// 	{'Images and Videos'}
-						// </TermLink>,
+						<TermLink key='menu-0' to='/gallery'>
+							{'Gallery'}
+						</TermLink>,
 						<TermLink key='menu-1' to='/songs-and-poems'>
 							{'Songs and Poems'}
 						</TermLink>,
@@ -42,7 +42,7 @@ const Home: React.FC<Props> = ({ termRef, setStage }) => {
 					),
 			],
 		])
-		return
+		return () => term.stop()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [termRef])
 

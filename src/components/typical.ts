@@ -6,6 +6,9 @@ export async function typer(props: TyperProps, node: any, ...args: any) {
 	let ss = 75
 	let didFirstWrite = false
 	for (const arg of args) {
+		if (!node) {
+			return
+		}
 		if (props.canceled) {
 			// node.textContent += '^C'
 			return
