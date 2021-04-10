@@ -193,9 +193,11 @@ const Gallery: React.FC<Props> = ({ termRef, setStage, match, history }) => {
 	}, [termRef, id, matchId, didInit, fill])
 
 	// Keep scroll position (why necessary? dunno)
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const scrollY = React.useMemo(() => window.scrollY, [id])
 	React.useLayoutEffect(() => {
 		setTimeout(() => window.scrollTo(0, scrollY), 0)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [id])
 
 	const { prev, next } = prevNext(id)
