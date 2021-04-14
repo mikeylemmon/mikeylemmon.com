@@ -5,7 +5,7 @@ const base = { to: '/songs-and-poems', title: 'Songs and Poems' }
 const links = [
 	{ to: `${base.to}/given-time`, title: 'Given Time' },
 	{ to: `${base.to}/a-mighty-growing`, title: 'A Mighty Growing' },
-	{ to: `${base.to}/my-bride`, title: 'My Bride' },
+	{ to: `${base.to}/my-winds`, title: 'My Winds' },
 	{ to: `${base.to}/bompa`, title: 'Bompa' },
 ]
 export default links
@@ -32,20 +32,20 @@ export const relativeLinks = (path: string, ended = false) => {
 	const elems = [
 		<TermLink key='link-0' to={base.to} soft>
 			&lt; {base.title}
-		</TermLink>
+		</TermLink>,
 	]
 	if (ii !== 0) {
 		elems.push(
 			<TermLink key='link-1' to={links[prev].to} soft>
 				Prev
-			</TermLink>
+			</TermLink>,
 		)
 	}
 	if (ii !== links.length - 1) {
 		elems.push(
 			<TermLink key='link-2' to={links[next].to} soft={!ended}>
 				Next
-			</TermLink>
+			</TermLink>,
 		)
 	}
 	return elems

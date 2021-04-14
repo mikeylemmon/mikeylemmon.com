@@ -41,7 +41,7 @@ const App: React.FC = () => {
 					<Route path='/songs-and-poems/a-mighty-growing'>
 						<MightyGrowing termRef={termRef} setStage={setStage} />
 					</Route>
-					<Route path='/songs-and-poems/my-bride'>
+					<Route path='/songs-and-poems/my-winds'>
 						<MyBride termRef={termRef} setStage={setStage} />
 					</Route>
 					<Route path='/songs-and-poems/bompa'>

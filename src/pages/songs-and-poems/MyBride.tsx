@@ -16,13 +16,11 @@ const MyBride: React.FC<Props> = (props: Props) => (
 	<Poem
 		{...props}
 		small={false}
-		progress={
-			[300, { speed: 0 }, '.........', { speed: -2400 }, '.', { speed: 0 }, 'end']
-		}
+		progress={[300, { speed: 0 }, '.........', { speed: -2400 }, '.', { speed: 0 }, 'end']}
 		lines={[
 			[{ speed }, breath, `my winds have no sail`],
 			[{ speed }, breath, ` `],
-			[{ speed }, breath, `my crimes have no jail`],
+			[{ speed }, breath, `my storms have no gale`],
 			[{ speed }, breath, ` `],
 			[{ speed }, breath, `waves without ocean`],
 			[{ speed }, breath, ` `],
