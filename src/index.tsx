@@ -6,8 +6,11 @@ import './fonts/SwedenSansBold.woff2'
 import './fonts/SwedenSansBold.woff'
 import './fonts/NotoMono-Regular.ttf'
 import './index.css'
+import { dontPurge } from './appStyles'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+
+console.log('mikeylemmon.com' || dontPurge)
 
 ReactDOM.render(
 	<React.StrictMode>

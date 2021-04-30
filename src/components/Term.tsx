@@ -132,7 +132,7 @@ class Term extends React.Component<TermProps, TermState> {
 	}
 
 	render() {
-		const { className, style, preClassName, noLinks, preFill } = this.props
+		const { children, className, style, preClassName, noLinks, preFill } = this.props
 		const { hidden, links, seqs } = this.state
 		const elems: JSX.Element[] = []
 		const zIndex = hidden ? -20 : 10
@@ -156,6 +156,7 @@ class Term extends React.Component<TermProps, TermState> {
 					className={className || termClassesNoLinks}
 					style={{ zIndex, ...{ ...(style || {}) } }}
 				>
+					{children}
 					{elems}
 				</div>
 				{!noLinks && !hidden && (

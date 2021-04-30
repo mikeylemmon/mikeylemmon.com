@@ -20,19 +20,19 @@ const GivenTime: React.FC<Props> = (props: Props) => (
 			[{ speed }, breath * 2, `given time`],
 			[{ speed }, breath, `all spools unwind`],
 			[{ speed: speed * 0.8 }, breath, `all schemes recede to sea`],
-			[{ speed: speed * 0.8 }, breath / 2, `gone to seed`],
+			[{ speed: speed * 0.8 }, breath * 0.7, `gone to seed`],
 			[{ speed }, breath, ` `],
 			[{ speed }, breath, `given time`],
 			[{ speed }, breath, `all dynasties decline`],
 			[{ speed }, breath, `and it's fine`],
-			[{ speed }, breath * 2, `and it's clear`],
+			[{ speed }, breath * 1.5, `and it's clear`],
 			[{ speed }, breath, `never is always near`],
 			[{ speed }, breath, ` `],
 			[{ speed }, breath, `given time`],
 			[{ speed }, breath, `I seek what I can't find`],
 			[{ speed }, breath, `endless sublime`],
 			[{ speed }, breath * 2, `nothing to fear`],
-			[{ speed }, breath * 2, `being is always here`],
+			[{ speed }, breath * 1.5, `being is always here`],
 		]}
 	/>
 )

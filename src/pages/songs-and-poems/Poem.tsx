@@ -3,6 +3,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { HomeContentStage } from 'components/HomeContent'
 import Term, { Line } from 'components/Term'
 import { TermAction } from 'components/TermLink'
+import { textContentPage, textContentWrap, textContentTerm } from 'appStyles'
 import { linkForPath, relativeLinks } from './links'
 
 type Props = RouteComponentProps & {
@@ -71,26 +72,12 @@ const Poem: React.FC<Props> = ({ lines, location, progress, small, setStage, ter
 
 	const textSize = small ? 'text-xs md:text-sm' : 'text-sm'
 	return (
-		<div className={['flex', 'flex-col', 'items-center', 'justify-start', 'p-4', 'pb-8'].join(' ')}>
-			<div
-				className={[
-					'bg-cool-300',
-					'bg-opacity-95',
-					'rounded-xl',
-					'overflow-y-auto',
-					'w-full',
-					'max-w-full',
-					'md:w-lg',
-					'flex',
-					'flex-col',
-					'items-center',
-					'justify-start',
-				].join(' ')}
-			>
+		<div className={textContentPage}>
+			<div className={textContentWrap}>
 				<pre className='mt-14 underline'>{page.title}</pre>
 				<Term
 					ref={songRef}
-					className={'px-8 pt-10 pb-16 w-full max-w-md text-black'}
+					className={textContentTerm}
 					preClassName={'text-indent ' + textSize}
 					preFill=' '
 					noLinks

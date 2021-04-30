@@ -11,10 +11,6 @@ type Props = RouteComponentProps & {
 
 const speed = -90
 const breath = 1200
-// 2'45"
-// 2:42 —
-// 2:53:30 - 2:56:25 + 5
-// 3:01:45 - 4:40
 
 const Bompa: React.FC<Props> = (props: Props) => (
 	<Poem
@@ -47,9 +43,9 @@ const Bompa: React.FC<Props> = (props: Props) => (
 			[{ speed }, breath, ` `],
 			[{ speed }, breath, `you are holding your breath`],
 			[{ speed }, breath, ` `],
-			[{ speed }, breath * 4, `a gentle downward slope`],
+			[{ speed }, breath * 3, `a gentle downward slope`],
 			[{ speed }, breath * 2, `the horizon grows`],
-			[{ speed }, breath * 3, `it approaches`],
+			[{ speed }, breath * 3, `and approaches`],
 			[{ speed }, breath, `pulling us in`],
 			[{ speed }, breath, ` `],
 			[{ speed }, breath * 2, `rising thunder`],
@@ -94,7 +90,7 @@ const Bompa: React.FC<Props> = (props: Props) => (
 			],
 			[{ speed }, breath, ` `],
 			[{ speed }, breath, `between the water and the sky`],
-			[{ speed }, breath * 3, `your effervescence lingers`],
+			[{ speed }, breath * 2, `your effervescence lingers`],
 		]}
 	/>
 )
