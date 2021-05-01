@@ -29,16 +29,22 @@ const Vid: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	const ref: React.MutableRefObject<HTMLVideoElement | null> = useRef(null)
 	const isVisible = usePageVisibility()
 	useEffect(() => {
+		console.log(`stage=${stage} srcStage=${srcStage} isVisible=${isVisible}`)
 		if (ref.current) {
 			if (!isVisible || stage !== srcStage) {
+				console.log('Pausing', srcStage)
 				ref.current.pause()
 			} else {
+				ref.current.pause()
 				ref.current.play()
+				ref.current.onplay = () => console.log('ONPLAY!', srcStage)
+				console.log('Playing', srcStage, `paused=${ref.current.paused}`, `error=${ref.current.error}`)
+				;(window as any).vid = ref.current
 			}
 		}
 	}, [isVisible, srcStage, stage])
 	return (
-		<video {...{ className, style }} ref={ref} loop={true} muted={true} playsInline={true}>
+		<video {...{ className, style }} ref={ref} loop={true} muted={true} playsInline={true} preload='auto'>
 			{sources?.map((ss, ii) => (
 				<source key={`${srcStage}-${ii}`} src={ss.src} type={ss.type} />
 			))}

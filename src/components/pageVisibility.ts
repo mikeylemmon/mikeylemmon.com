@@ -23,7 +23,7 @@ export function browserDocumentHiddenProp() {
 	return 'hidden'
 }
 
-export function isDocumentHidden() {
+export function isDocumentVisible() {
 	const doc = document as any
 	if (typeof doc[browserDocumentHiddenProp()] === 'undefined') {
 		return false
@@ -32,9 +32,10 @@ export function isDocumentHidden() {
 }
 
 export function usePageVisibility() {
-	const [isVisible, setIsVisible] = useState(isDocumentHidden())
+	const [isVisible, setIsVisible] = useState(isDocumentVisible())
 	const onVisibilityChange = () => {
-		setIsVisible(isDocumentHidden())
+		console.log(`Visibility changed to ${isDocumentVisible()}`)
+		setIsVisible(isDocumentVisible())
 	}
 	useEffect(() => {
 		const visibilityChange = browserVisibilityEvent()
