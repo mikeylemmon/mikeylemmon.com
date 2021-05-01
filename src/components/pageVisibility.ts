@@ -35,8 +35,8 @@ export function usePageVisibility(setNeedsRestage: (val: boolean) => void) {
 	const [isVisible, setIsVisible] = useState(isDocumentVisible())
 	const onVisibilityChange = () => {
 		const isVis = isDocumentVisible()
-		// console.log(`Visibility changed to ${isVis}`)
-		setNeedsRestage(isVis)
+		console.log(`Visibility changed to ${isVis}`)
+		setNeedsRestage(true)
 		setIsVisible(isVis)
 	}
 	useEffect(() => {
