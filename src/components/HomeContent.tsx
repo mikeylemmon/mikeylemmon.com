@@ -44,14 +44,14 @@ const Thrive10: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	}
 	const zz = style.zIndex
 	const ss = { zIndex: stage.match(/intro|mikey/) ? zz : zz + 1 }
-	return Vid({ className, srcStage: 'thrive10.mp4', stage, style: ss })
+	return Vid({ className, srcStage: '/assets/videos/thrive0.mp4', stage, style: ss })
 }
 
 const Thrive11: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	const { className, stage, style } = props
 	const zz = style.zIndex
 	const ss = { zIndex: stage !== 'thrive11' ? zz : zz + 1 }
-	return Vid({ className, srcStage: 'thrive1.mov', stage, style: ss })
+	return Vid({ className, srcStage: '/assets/videos/thrive1.mp4', stage, style: ss })
 }
 
 const Mikey: React.FC<HomeContentProps> = (props: HomeContentProps) => {
