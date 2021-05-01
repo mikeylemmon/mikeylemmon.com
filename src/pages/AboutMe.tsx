@@ -94,7 +94,7 @@ const AboutMe: React.FC<Props> = ({ termRef, setStage }) => {
 						techniques to create apps, apparel, VR experiences, and digital works of art. Through
 						these experiments, I have come to see life flourishing well beyond the confines of
 						organic matter — I see living organisms in languages, in organizations, in economic
-						structures, in the evolution and propogation of thoughts and concepts, everywhere! My
+						structures, in the evolution and propagation of thoughts and concepts, everywhere! My
 						mind is as full of life as the lushest jungle, and my goal is to use my attention and
 						energy to help evolve healthy, thriving ecosystems in myself, my relationships, my
 						communities, and the whole world over.
