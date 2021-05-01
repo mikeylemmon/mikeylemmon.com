@@ -29,10 +29,9 @@ const Vid: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 			}
 		}
 	}, [srcStage, stage])
-	const src = `/assets/videos/${srcStage}`
 	return (
 		<video {...{ className, style }} ref={ref} loop={true} muted={true} playsInline={true}>
-			<source src={src} type='video/mp4' />
+			<source src={srcStage} type='video/mp4' />
 		</video>
 	)
 }
