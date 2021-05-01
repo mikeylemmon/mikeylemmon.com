@@ -18,7 +18,7 @@ const Songs: React.FC<Props> = ({ termRef, setHomeStage }) => {
 		term.typeLines([
 			[
 				() => {
-					setHomeStage('thrive1')
+					setHomeStage()
 					term.setLinks()
 				},
 				{ speed: 24 },

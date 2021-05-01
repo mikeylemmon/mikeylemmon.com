@@ -15,10 +15,8 @@ const AboutMe: React.FC<Props> = ({ termRef, setHomeStage }) => {
 		}
 		term.typeLines([
 			[
-				() => setHomeStage('intro'),
-				16,
 				() => {
-					setHomeStage('thrive1')
+					setHomeStage()
 					term.setLinks()
 				},
 				'> whois mikey',
