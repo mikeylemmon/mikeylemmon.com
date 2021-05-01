@@ -10,28 +10,44 @@ export type HomeContentStage =
 	| 'thrive10'
 	| 'thrive11'
 
+type HomeContentSource = {
+	src: string
+	type: string
+}
+
 type HomeContentProps = {
 	stage: HomeContentStage
 	style: { zIndex: number }
 	className: string
 	srcStage?: string
+	sources?: HomeContentSource[]
 }
 
 const Vid: React.FC<HomeContentProps> = (props: HomeContentProps) => {
-	const { srcStage, stage, style, className } = props
+	const { sources, srcStage, stage, style, className } = props
 	const ref: React.MutableRefObject<HTMLVideoElement | null> = useRef(null)
 	useEffect(() => {
 		if (ref.current) {
 			if (stage === srcStage) {
+				console.log('Playing', srcStage, stage)
 				ref.current.play()
 			} else {
+				console.log('Pausing', srcStage, stage)
 				ref.current.pause()
+			}
+		} else {
+			if (stage === srcStage) {
+				console.log('NOT Playing', srcStage, stage)
+			} else {
+				console.log('NOT Pausing', srcStage, stage)
 			}
 		}
 	}, [srcStage, stage])
 	return (
 		<video {...{ className, style }} ref={ref} loop={true} muted={true} playsInline={true}>
-			<source src={srcStage} type='video/mp4' />
+			{sources?.map((ss, ii) => (
+				<source key={`${srcStage}-${ii}`} src={ss.src} type={ss.type} />
+			))}
 		</video>
 	)
 }
@@ -43,14 +59,32 @@ const Thrive10: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	}
 	const zz = style.zIndex
 	const ss = { zIndex: stage.match(/intro|mikey/) ? zz : zz + 1 }
-	return Vid({ className, srcStage: '/assets/videos/thrive0.mp4', stage, style: ss })
+	return Vid({
+		className,
+		srcStage: 'thrive10',
+		sources: [
+			{ src: '/assets/videos/thrive0.mp4', type: 'video/mp4' },
+			{ src: '/assets/videos/thrive0.m3u8', type: 'application/x-mpegURL' },
+		],
+		stage,
+		style: ss,
+	})
 }
 
 const Thrive11: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	const { className, stage, style } = props
 	const zz = style.zIndex
 	const ss = { zIndex: stage !== 'thrive11' ? zz : zz + 1 }
-	return Vid({ className, srcStage: '/assets/videos/thrive1.mp4', stage, style: ss })
+	return Vid({
+		className,
+		srcStage: 'thrive11',
+		sources: [
+			{ src: '/assets/videos/thrive1.mp4', type: 'video/mp4' },
+			{ src: '/assets/videos/thrive1.m3u8', type: 'application/x-mpegURL' },
+		],
+		stage,
+		style: ss,
+	})
 }
 
 const Mikey: React.FC<HomeContentProps> = (props: HomeContentProps) => {
