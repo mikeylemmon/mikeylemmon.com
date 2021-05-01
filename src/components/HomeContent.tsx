@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { usePageVisibility } from './pageVisibility'
 
 export type HomeContentStage =
 	| 'intro'
@@ -26,23 +27,16 @@ type HomeContentProps = {
 const Vid: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	const { sources, srcStage, stage, style, className } = props
 	const ref: React.MutableRefObject<HTMLVideoElement | null> = useRef(null)
+	const isVisible = usePageVisibility()
 	useEffect(() => {
 		if (ref.current) {
-			if (stage === srcStage) {
-				console.log('Playing', srcStage, stage)
-				ref.current.play()
-			} else {
-				console.log('Pausing', srcStage, stage)
+			if (!isVisible || stage !== srcStage) {
 				ref.current.pause()
-			}
-		} else {
-			if (stage === srcStage) {
-				console.log('NOT Playing', srcStage, stage)
 			} else {
-				console.log('NOT Pausing', srcStage, stage)
+				ref.current.play()
 			}
 		}
-	}, [srcStage, stage])
+	}, [isVisible, srcStage, stage])
 	return (
 		<video {...{ className, style }} ref={ref} loop={true} muted={true} playsInline={true}>
 			{sources?.map((ss, ii) => (
