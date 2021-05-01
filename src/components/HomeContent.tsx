@@ -29,7 +29,7 @@ const Vid: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 			}
 		}
 	}, [srcStage, stage])
-	const src = `/assets/videos/${srcStage}.mp4`
+	const src = `/assets/videos/${srcStage}`
 	return (
 		<video {...{ className, style }} ref={ref} loop={true} muted={true} playsInline={true}>
 			<source src={src} type='video/mp4' />
@@ -44,17 +44,14 @@ const Thrive10: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	}
 	const zz = style.zIndex
 	const ss = { zIndex: stage.match(/intro|mikey/) ? zz : zz + 1 }
-	return Vid({ className, srcStage: 'thrive10', stage, style: ss })
+	return Vid({ className, srcStage: 'thrive10.mp4', stage, style: ss })
 }
 
 const Thrive11: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	const { className, stage, style } = props
-	// if (!stage.match(/thrive|menu/)) {
-	// 	return null
-	// }
 	const zz = style.zIndex
 	const ss = { zIndex: stage !== 'thrive11' ? zz : zz + 1 }
-	return Vid({ className, srcStage: 'thrive11', stage, style: ss })
+	return Vid({ className, srcStage: 'thrive1.mov', stage, style: ss })
 }
 
 const Mikey: React.FC<HomeContentProps> = (props: HomeContentProps) => {
