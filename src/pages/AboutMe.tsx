@@ -1,16 +1,13 @@
-import React, { MutableRefObject, useEffect } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router-dom'
-import { HomeContentStage } from 'components/HomeContent'
+import React, { useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
+import { PageProps } from 'pages/Page'
 import Term from 'components/Term'
 import TermLink from 'components/TermLink'
 import { link, textContentPage, textContentWrap, textContentTerm } from 'appStyles'
 
-type Props = RouteComponentProps & {
-	termRef: MutableRefObject<Term | null>
-	setStage: (stage: HomeContentStage) => void
-}
+type Props = PageProps
 
-const AboutMe: React.FC<Props> = ({ termRef, setStage }) => {
+const AboutMe: React.FC<Props> = ({ termRef, setHomeStage }) => {
 	useEffect(() => {
 		const term = termRef.current
 		if (!term) {
@@ -18,8 +15,10 @@ const AboutMe: React.FC<Props> = ({ termRef, setStage }) => {
 		}
 		term.typeLines([
 			[
+				() => setHomeStage('intro'),
+				16,
 				() => {
-					setStage('thrive1')
+					setHomeStage('thrive1')
 					term.setLinks()
 				},
 				'> whois mikey',

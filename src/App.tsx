@@ -20,6 +20,19 @@ import AboutMe from 'pages/AboutMe'
 const App: React.FC = () => {
 	const termRef: MutableRefObject<Term | null> = useRef(null)
 	const [stage, setStage] = useState<HomeContentStage>('intro')
+	const [needsRestage, setNeedsRestage] = useState<boolean>(false)
+	const setHomeStage = () => {
+		if (needsRestage) {
+			setStage('intro')
+			setTimeout(() => setStage('thrive1'), 16)
+		} else {
+			setStage('thrive1')
+		}
+	}
+
+	if (!setNeedsRestage) {
+		console.warn('<App> No setNeedsRestage?', setNeedsRestage)
+	}
 
 	return (
 		<>
@@ -27,7 +40,7 @@ const App: React.FC = () => {
 				<Term ref={termRef} />
 				<Switch>
 					<Route path='/home'>
-						<Home termRef={termRef} setStage={setStage} />
+						<Home termRef={termRef} setHomeStage={setHomeStage} />
 					</Route>
 					<Route path='/gallery/:id'>
 						<Gallery termRef={termRef} setStage={setStage} />
@@ -36,28 +49,28 @@ const App: React.FC = () => {
 						<Gallery termRef={termRef} setStage={setStage} />
 					</Route>
 					<Route path='/songs-and-poems/given-time'>
-						<GivenTime termRef={termRef} setStage={setStage} />
+						<GivenTime termRef={termRef} setHomeStage={setHomeStage} />
 					</Route>
 					<Route path='/songs-and-poems/a-mighty-growing'>
-						<MightyGrowing termRef={termRef} setStage={setStage} />
+						<MightyGrowing termRef={termRef} setHomeStage={setHomeStage} />
 					</Route>
 					<Route path='/songs-and-poems/my-winds'>
-						<MyBride termRef={termRef} setStage={setStage} />
+						<MyBride termRef={termRef} setHomeStage={setHomeStage} />
 					</Route>
 					<Route path='/songs-and-poems/bompa'>
-						<Bompa termRef={termRef} setStage={setStage} />
+						<Bompa termRef={termRef} setHomeStage={setHomeStage} />
 					</Route>
 					<Route path='/songs-and-poems'>
-						<Songs termRef={termRef} setStage={setStage} />
+						<Songs termRef={termRef} setHomeStage={setHomeStage} />
 					</Route>
 					<Route path='/about'>
-						<AboutMe termRef={termRef} setStage={setStage} />
+						<AboutMe termRef={termRef} setHomeStage={setHomeStage} />
 					</Route>
 					<Route exact path='/'>
-						<Intro termRef={termRef} setStage={setStage} />
+						<Intro termRef={termRef} setHomeStage={setHomeStage} setStage={setStage} />
 					</Route>
 					<Route path='*'>
-						<Home termRef={termRef} setStage={setStage} />
+						<Home termRef={termRef} setHomeStage={setHomeStage} />
 					</Route>
 				</Switch>
 			</Router>
@@ -65,6 +78,7 @@ const App: React.FC = () => {
 				stage={stage}
 				style={{ zIndex: -10 }}
 				className='bg-gray-700 fixed left-0 top-0 h-full w-full object-cover object-center'
+				setNeedsRestage={setNeedsRestage}
 			/>
 		</>
 	)

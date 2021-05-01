@@ -1,13 +1,9 @@
-import React, { MutableRefObject } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router-dom'
-import { HomeContentStage } from 'components/HomeContent'
-import Term from 'components/Term'
+import React from 'react'
+import { withRouter } from 'react-router-dom'
+import { PageProps } from 'pages/Page'
 import Poem from './Poem'
 
-type Props = RouteComponentProps & {
-	termRef: MutableRefObject<Term | null>
-	setStage: (stage: HomeContentStage) => void
-}
+type Props = PageProps
 
 const speed = -130
 const breath = 1200

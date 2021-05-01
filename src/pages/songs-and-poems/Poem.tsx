@@ -1,20 +1,18 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router-dom'
-import { HomeContentStage } from 'components/HomeContent'
+import { withRouter } from 'react-router-dom'
+import { PageProps } from 'pages/Page'
 import Term, { Line } from 'components/Term'
 import { TermAction } from 'components/TermLink'
 import { textContentPage, textContentWrap, textContentTerm } from 'appStyles'
 import { linkForPath, relativeLinks } from './links'
 
-type Props = RouteComponentProps & {
-	termRef: MutableRefObject<Term | null>
-	setStage: (stage: HomeContentStage) => void
+type Props = PageProps & {
 	lines: Line[]
 	progress: Line
 	small?: boolean
 }
 
-const Poem: React.FC<Props> = ({ lines, location, progress, small, setStage, termRef }) => {
+const Poem: React.FC<Props> = ({ lines, location, progress, small, setHomeStage, termRef }) => {
 	const songRef: MutableRefObject<Term | null> = useRef(null)
 	const [play, setPlay] = useState(false)
 	const page = linkForPath(location.pathname)
@@ -26,7 +24,7 @@ const Poem: React.FC<Props> = ({ lines, location, progress, small, setStage, ter
 		term.typeLines([
 			[
 				() => {
-					setStage('thrive1')
+					setHomeStage('thrive1')
 					term.setLinks()
 				},
 				{ speed: 24 },

@@ -1,15 +1,11 @@
-import React, { MutableRefObject, useEffect } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router-dom'
-import { HomeContentStage } from 'components/HomeContent'
-import Term from 'components/Term'
+import React, { useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
+import { PageProps } from 'pages/Page'
 import TermLink from 'components/TermLink'
 
-type Props = RouteComponentProps & {
-	termRef: MutableRefObject<Term | null>
-	setStage: (stage: HomeContentStage) => void
-}
+type Props = PageProps
 
-const Home: React.FC<Props> = ({ termRef, setStage }) => {
+const Home: React.FC<Props> = ({ termRef, setHomeStage }) => {
 	useEffect(() => {
 		const term = termRef.current
 		if (!term) {
@@ -18,7 +14,7 @@ const Home: React.FC<Props> = ({ termRef, setStage }) => {
 		term.typeLines([
 			[
 				() => {
-					setStage('thrive1')
+					setHomeStage()
 					term.setLinks()
 				},
 				'> menu',

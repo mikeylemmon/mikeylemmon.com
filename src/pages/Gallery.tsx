@@ -1,9 +1,8 @@
-import React, { MutableRefObject, useEffect, useState } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router-dom'
-import { HomeContentStage } from 'components/HomeContent'
+import React, { useEffect, useState } from 'react'
+import { withRouter } from 'react-router-dom'
+import { PagePropsSetStage } from 'pages/Page'
 import Term from 'components/Term'
 import TermLink, { TermAction } from 'components/TermLink'
-// import TermLink from 'components/TermLink'
 
 type MediaFile = {
 	src: string
@@ -97,9 +96,7 @@ const imgs = [
 
 const files: MediaFile[] = [...imgs.map(src => ({ src, kind: 'image' }))]
 
-type Props = RouteComponentProps & {
-	termRef: MutableRefObject<Term | null>
-	setStage: (stage: HomeContentStage) => void
+type Props = PagePropsSetStage & {
 	match: {
 		params: {
 			id: string

@@ -31,11 +31,13 @@ export function isDocumentVisible() {
 	return !doc[browserDocumentHiddenProp()]
 }
 
-export function usePageVisibility() {
+export function usePageVisibility(setNeedsRestage: (val: boolean) => void) {
 	const [isVisible, setIsVisible] = useState(isDocumentVisible())
 	const onVisibilityChange = () => {
-		console.log(`Visibility changed to ${isDocumentVisible()}`)
-		setIsVisible(isDocumentVisible())
+		const isVis = isDocumentVisible()
+		// console.log(`Visibility changed to ${isVis}`)
+		setNeedsRestage(isVis)
+		setIsVisible(isVis)
 	}
 	useEffect(() => {
 		const visibilityChange = browserVisibilityEvent()

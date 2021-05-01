@@ -20,27 +20,45 @@ type HomeContentProps = {
 	stage: HomeContentStage
 	style: { zIndex: number }
 	className: string
-	srcStage?: string
-	sources?: HomeContentSource[]
+	setNeedsRestage: (val: boolean) => void
 }
 
-const Vid: React.FC<HomeContentProps> = (props: HomeContentProps) => {
-	const { sources, srcStage, stage, style, className } = props
+type HomeContentElemProps = {
+	stage: HomeContentStage
+	style: { zIndex: number }
+	className: string
+	srcStage?: string
+	sources?: HomeContentSource[]
+	isVisible?: boolean
+}
+
+const Vid: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
+	const { sources, srcStage, stage, style, className, isVisible } = props
 	const ref: React.MutableRefObject<HTMLVideoElement | null> = useRef(null)
-	const isVisible = usePageVisibility()
 	useEffect(() => {
-		console.log(`stage=${stage} srcStage=${srcStage} isVisible=${isVisible}`)
-		if (ref.current) {
-			if (!isVisible || stage !== srcStage) {
-				console.log('Pausing', srcStage)
-				ref.current.pause()
-			} else {
-				ref.current.pause()
-				ref.current.play()
-				ref.current.onplay = () => console.log('ONPLAY!', srcStage)
-				console.log('Playing', srcStage, `paused=${ref.current.paused}`, `error=${ref.current.error}`)
-				;(window as any).vid = ref.current
-			}
+		// console.log(`isVisible=${isVisible}`)
+		if (!ref.current || !isVisible) {
+			return
+		}
+		// const prevSrc = ref.current.src
+		// ref.current.onloadstart = () => console.log('ONLOADSTART', prevSrc)
+		// ref.current.onload = () => console.log('ONLOAD', prevSrc)
+		ref.current.load()
+	}, [isVisible])
+	useEffect(() => {
+		// console.log(`isVisible=${isVisible} stage=${stage} srcStage=${srcStage}`)
+		if (!ref.current) {
+			return
+		}
+		if (!isVisible || stage !== srcStage) {
+			// console.log('Pausing', srcStage)
+			ref.current.pause()
+		} else {
+			ref.current.pause()
+			ref.current.play()
+			// ref.current.onplay = () => console.log('ONPLAY!', srcStage)
+			// console.log('Playing', srcStage, `paused=${ref.current.paused}`, `error=${ref.current.error}`)
+			// ;(window as any).vid = ref.current
 		}
 	}, [isVisible, srcStage, stage])
 	return (
@@ -52,42 +70,40 @@ const Vid: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	)
 }
 
-const Thrive0: React.FC<HomeContentProps> = (props: HomeContentProps) => {
-	const { className, stage, style } = props
+const Thrive0: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
+	const { stage, style } = props
 	if (stage.match(/thrive1|menu/)) {
 		return null
 	}
 	const zz = style.zIndex
 	const ss = { zIndex: stage.match(/intro|mikey/) ? zz : zz + 1 }
 	return Vid({
-		className,
+		...props,
 		srcStage: 'thrive0',
 		sources: [
 			{ src: '/assets/videos/thrive0.m3u8', type: 'application/x-mpegURL' },
 			{ src: '/assets/videos/thrive0.mp4', type: 'video/mp4' },
 		],
-		stage,
 		style: ss,
 	})
 }
 
-const Thrive1: React.FC<HomeContentProps> = (props: HomeContentProps) => {
-	const { className, stage, style } = props
+const Thrive1: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
+	const { stage, style } = props
 	const zz = style.zIndex
 	const ss = { zIndex: stage !== 'thrive1' ? zz : zz + 1 }
 	return Vid({
-		className,
+		...props,
 		srcStage: 'thrive1',
 		sources: [
 			{ src: '/assets/videos/thrive1.m3u8', type: 'application/x-mpegURL' },
 			{ src: '/assets/videos/thrive1.mp4', type: 'video/mp4' },
 		],
-		stage,
 		style: ss,
 	})
 }
 
-const Mikey: React.FC<HomeContentProps> = (props: HomeContentProps) => {
+const Mikey: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
 	const { className, stage, style } = props
 	if (!stage.match(/intro|mikey/)) {
 		return null
@@ -100,7 +116,7 @@ const Mikey: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	return <img {...{ className, src, style: ss, alt: 'Mikey' }} />
 }
 
-const Intro: React.FC<HomeContentProps> = (props: HomeContentProps) => {
+const Intro: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
 	const { className, stage, style } = props
 	if (!stage.match(/intro/)) {
 		return null
@@ -109,12 +125,15 @@ const Intro: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 }
 
 const HomeContent: React.FC<HomeContentProps> = props => {
+	const { setNeedsRestage, stage } = props
+	const isVisible = usePageVisibility(setNeedsRestage)
+	useEffect(() => setNeedsRestage(false), [stage, setNeedsRestage])
 	return (
 		<div>
 			<Intro {...{ ...props }} />
 			<Mikey {...{ ...props }} />
-			<Thrive0 {...{ ...props }} />
-			<Thrive1 {...{ ...props }} />
+			<Thrive0 {...{ ...props, isVisible }} />
+			<Thrive1 {...{ ...props, isVisible }} />
 		</div>
 	)
 }

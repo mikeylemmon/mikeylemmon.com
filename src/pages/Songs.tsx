@@ -1,16 +1,15 @@
 import React, { MutableRefObject, useEffect } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
-import { HomeContentStage } from 'components/HomeContent'
 import Term from 'components/Term'
 import TermLink from 'components/TermLink'
 import links from 'pages/songs-and-poems/links'
 
 type Props = RouteComponentProps & {
 	termRef: MutableRefObject<Term | null>
-	setStage: (stage: HomeContentStage) => void
+	setHomeStage: () => void
 }
 
-const Songs: React.FC<Props> = ({ termRef, setStage }) => {
+const Songs: React.FC<Props> = ({ termRef, setHomeStage }) => {
 	useEffect(() => {
 		const term = termRef.current
 		if (!term) {
@@ -19,7 +18,7 @@ const Songs: React.FC<Props> = ({ termRef, setStage }) => {
 		term.typeLines([
 			[
 				() => {
-					setStage('thrive1')
+					setHomeStage('thrive1')
 					term.setLinks()
 				},
 				{ speed: 24 },
