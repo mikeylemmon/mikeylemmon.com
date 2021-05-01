@@ -19,7 +19,7 @@ const AboutMe: React.FC<Props> = ({ termRef, setStage }) => {
 		term.typeLines([
 			[
 				() => {
-					setStage('thrive11')
+					setStage('thrive1')
 					term.setLinks()
 				},
 				'> whois mikey',

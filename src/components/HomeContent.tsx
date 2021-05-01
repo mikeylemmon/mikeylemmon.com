@@ -8,8 +8,8 @@ export type HomeContentStage =
 	| 'mikey3'
 	| 'mikey4'
 	| 'mikey5'
-	| 'thrive10'
-	| 'thrive11'
+	| 'thrive0'
+	| 'thrive1'
 
 type HomeContentSource = {
 	src: string
@@ -46,16 +46,16 @@ const Vid: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	)
 }
 
-const Thrive10: React.FC<HomeContentProps> = (props: HomeContentProps) => {
+const Thrive0: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	const { className, stage, style } = props
-	if (stage.match(/thrive11|menu/)) {
+	if (stage.match(/thrive1|menu/)) {
 		return null
 	}
 	const zz = style.zIndex
 	const ss = { zIndex: stage.match(/intro|mikey/) ? zz : zz + 1 }
 	return Vid({
 		className,
-		srcStage: 'thrive10',
+		srcStage: 'thrive0',
 		sources: [
 			{ src: '/assets/videos/thrive0.m3u8', type: 'application/x-mpegURL' },
 			{ src: '/assets/videos/thrive0.mp4', type: 'video/mp4' },
@@ -65,13 +65,13 @@ const Thrive10: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	})
 }
 
-const Thrive11: React.FC<HomeContentProps> = (props: HomeContentProps) => {
+const Thrive1: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 	const { className, stage, style } = props
 	const zz = style.zIndex
-	const ss = { zIndex: stage !== 'thrive11' ? zz : zz + 1 }
+	const ss = { zIndex: stage !== 'thrive1' ? zz : zz + 1 }
 	return Vid({
 		className,
-		srcStage: 'thrive11',
+		srcStage: 'thrive1',
 		sources: [
 			{ src: '/assets/videos/thrive1.m3u8', type: 'application/x-mpegURL' },
 			{ src: '/assets/videos/thrive1.mp4', type: 'video/mp4' },
@@ -107,8 +107,8 @@ const HomeContent: React.FC<HomeContentProps> = props => {
 		<div>
 			<Intro {...{ ...props }} />
 			<Mikey {...{ ...props }} />
-			<Thrive10 {...{ ...props }} />
-			<Thrive11 {...{ ...props }} />
+			<Thrive0 {...{ ...props }} />
+			<Thrive1 {...{ ...props }} />
 		</div>
 	)
 }

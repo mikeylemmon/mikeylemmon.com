@@ -26,7 +26,7 @@ const Poem: React.FC<Props> = ({ lines, location, progress, small, setStage, ter
 		term.typeLines([
 			[
 				() => {
-					setStage('thrive11')
+					setStage('thrive1')
 					term.setLinks()
 				},
 				{ speed: 24 },
