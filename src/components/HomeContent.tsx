@@ -63,8 +63,8 @@ const Thrive10: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 		className,
 		srcStage: 'thrive10',
 		sources: [
-			{ src: '/assets/videos/thrive0.mp4', type: 'video/mp4' },
 			{ src: '/assets/videos/thrive0.m3u8', type: 'application/x-mpegURL' },
+			{ src: '/assets/videos/thrive0.mp4', type: 'video/mp4' },
 		],
 		stage,
 		style: ss,
@@ -79,8 +79,8 @@ const Thrive11: React.FC<HomeContentProps> = (props: HomeContentProps) => {
 		className,
 		srcStage: 'thrive11',
 		sources: [
-			{ src: '/assets/videos/thrive1.mp4', type: 'video/mp4' },
 			{ src: '/assets/videos/thrive1.m3u8', type: 'application/x-mpegURL' },
+			{ src: '/assets/videos/thrive1.mp4', type: 'video/mp4' },
 		],
 		stage,
 		style: ss,
