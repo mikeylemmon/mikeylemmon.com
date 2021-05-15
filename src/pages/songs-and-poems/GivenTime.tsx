@@ -27,7 +27,8 @@ const GivenTime: React.FC<Props> = (props: Props) => (
 			[{ speed }, breath, `given time`],
 			[{ speed }, breath, `I seek what I can't find`],
 			[{ speed }, breath, `endless sublime`],
-			[{ speed }, breath * 2, `nothing to fear`],
+			[{ speed }, breath, ` `],
+			[{ speed }, breath, `nothing to fear`],
 			[{ speed }, breath * 1.5, `being is always here`],
 		]}
 	/>

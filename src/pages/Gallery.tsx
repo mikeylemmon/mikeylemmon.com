@@ -171,7 +171,7 @@ const Gallery: React.FC<Props> = ({ termRef, setStage, match, history }) => {
 				() => setLinks(term, id, fill, setFill),
 				() => setDidInit(true),
 			],
-			['(tap image to hide terminal)'],
+			[{ speed: 0 }, '(tap image to hide terminal)'],
 		])
 		return () => term.stop()
 		// eslint-disable-next-line react-hooks/exhaustive-deps

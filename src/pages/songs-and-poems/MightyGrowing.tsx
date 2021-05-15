@@ -28,8 +28,8 @@ const MightyGrowing: React.FC<Props> = (props: Props) => (
 			[{ speed: 0 }, indent, { speed }, breath / 4, `${indent}upside-down within my brain`],
 			[{ speed }, breath, `puddles rising up to heaven`],
 			[{ speed: 0 }, indent, { speed }, breath / 4, `${indent}shatters forming into panes`],
-			[{ speed }, breath, `I touched the soil`],
-			[{ speed: 0 }, indent, { speed }, breath / 4, `${indent}felt the earth of the unknown`],
+			[{ speed }, breath, `I felt the soil`],
+			[{ speed: 0 }, indent, { speed }, breath / 4, `${indent}touched the earth of the unknown`],
 			[{ speed }, breath, `there's a mighty growing`],
 			[{ speed: 0 }, indent, { speed }, breath, `${indent}underneath the snow`],
 		]}

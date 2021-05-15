@@ -1,4 +1,3 @@
-// import React, { createRef, useEffect, useRef, memo, MutableRefObject } from 'react'
 import React, { createRef, MutableRefObject } from 'react'
 import { typer } from './typical'
 
@@ -160,9 +159,11 @@ class Term extends React.Component<TermProps, TermState> {
 					{elems}
 				</div>
 				{!noLinks && !hidden && (
-					<div key='term-links' className={termClassesLinks} style={{ zIndex }}>
-						{links}
-					</div>
+					<nav>
+						<div key='term-links' className={termClassesLinks} style={{ zIndex }}>
+							{links}
+						</div>
+					</nav>
 				)}
 			</>
 		)

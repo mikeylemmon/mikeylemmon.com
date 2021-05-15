@@ -16,6 +16,7 @@ import MightyGrowing from 'pages/songs-and-poems/MightyGrowing'
 import MyBride from 'pages/songs-and-poems/MyBride'
 import Bompa from 'pages/songs-and-poems/Bompa'
 import AboutMe from 'pages/AboutMe'
+import AboutLinks from 'pages/AboutLinks'
 
 const App: React.FC = () => {
 	const termRef: MutableRefObject<Term | null> = useRef(null)
@@ -62,6 +63,9 @@ const App: React.FC = () => {
 					</Route>
 					<Route path='/songs-and-poems'>
 						<Songs termRef={termRef} setHomeStage={setHomeStage} />
+					</Route>
+					<Route path='/about/links'>
+						<AboutLinks termRef={termRef} setHomeStage={setHomeStage} />
 					</Route>
 					<Route path='/about'>
 						<AboutMe termRef={termRef} setHomeStage={setHomeStage} />
