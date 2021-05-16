@@ -73,7 +73,7 @@ const Poem: React.FC<Props> = ({ lines, location, progress, small, setHomeStage,
 	return (
 		<div className={textContentPage}>
 			<div className={textContentWrap}>
-				<pre className='mt-14 underline'>{page.title}</pre>
+				<h1 className='font-mono mt-14 underline'>{page.title}</h1>
 				<Term
 					ref={songRef}
 					className={textContentTerm}
