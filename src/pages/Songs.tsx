@@ -1,15 +1,11 @@
-import React, { MutableRefObject, useEffect } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router-dom'
-import Term from 'components/Term'
+import React, { useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
+import { PageProps, useTitle } from 'pages/Page'
 import TermLink from 'components/TermLink'
 import links from 'pages/songs-and-poems/links'
 
-type Props = RouteComponentProps & {
-	termRef: MutableRefObject<Term | null>
-	setHomeStage: () => void
-}
-
-const Songs: React.FC<Props> = ({ termRef, setHomeStage }) => {
+const Songs: React.FC<PageProps> = ({ termRef, title, setHomeStage }) => {
+	useTitle(title)
 	useEffect(() => {
 		const term = termRef.current
 		if (!term) {

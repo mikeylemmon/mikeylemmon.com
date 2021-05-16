@@ -24,6 +24,9 @@ const App: React.FC = () => {
 	const [needsRestage, setNeedsRestage] = useState<boolean>(false)
 	const setHomeStage = () => {
 		if (needsRestage) {
+			// restage solves some issues with bg video not playing
+			// after returning to the page on mobile by briefly
+			// disabling the video
 			setStage('intro')
 			setTimeout(() => setStage('thrive1'), 16)
 		} else {
@@ -31,66 +34,55 @@ const App: React.FC = () => {
 		}
 	}
 
-	if (!setNeedsRestage) {
-		console.warn('<App> No setNeedsRestage?', setNeedsRestage)
-	}
-
 	return (
-		<>
-			<Router>
-				<Term ref={termRef} />
-				<Switch>
-					<Route path='/home'>
-						<Home termRef={termRef} setHomeStage={setHomeStage} />
-					</Route>
-					<Route path='/gallery/:id'>
-						<Gallery termRef={termRef} setStage={setStage} />
-					</Route>
-					<Route path='/gallery'>
-						<Gallery termRef={termRef} setStage={setStage} />
-					</Route>
-					<Route path='/songs-and-poems/given-time'>
-						<GivenTime termRef={termRef} setHomeStage={setHomeStage} />
-					</Route>
-					<Route path='/songs-and-poems/a-mighty-growing'>
-						<MightyGrowing termRef={termRef} setHomeStage={setHomeStage} />
-					</Route>
-					<Route path='/songs-and-poems/my-winds'>
-						<MyBride termRef={termRef} setHomeStage={setHomeStage} />
-					</Route>
-					<Route path='/songs-and-poems/bompa'>
-						<Bompa termRef={termRef} setHomeStage={setHomeStage} />
-					</Route>
-					<Route path='/songs-and-poems'>
-						<Songs termRef={termRef} setHomeStage={setHomeStage} />
-					</Route>
-					<Route path='/about/links'>
-						<AboutLinks termRef={termRef} setHomeStage={setHomeStage} />
-					</Route>
-					<Route path='/about'>
-						<AboutMe termRef={termRef} setHomeStage={setHomeStage} />
-					</Route>
-					<Route exact path='/'>
-						<Intro termRef={termRef} setHomeStage={setHomeStage} setStage={setStage} />
-					</Route>
-					<Route path='*'>
-						<Home termRef={termRef} setHomeStage={setHomeStage} />
-					</Route>
-				</Switch>
-			</Router>
+		<Router>
+			<Term ref={termRef} />
+			<Switch>
+				<Route path='/home'>
+					<Home title='Home' termRef={termRef} setHomeStage={setHomeStage} />
+				</Route>
+				<Route path='/gallery/:id'>
+					<Gallery title='Gallery' termRef={termRef} setStage={setStage} />
+				</Route>
+				<Route path='/gallery'>
+					<Gallery title='Gallery' termRef={termRef} setStage={setStage} />
+				</Route>
+				<Route path='/songs-and-poems/given-time'>
+					<GivenTime title='"Given Time"' termRef={termRef} setHomeStage={setHomeStage} />
+				</Route>
+				<Route path='/songs-and-poems/a-mighty-growing'>
+					<MightyGrowing title='"A Mighty Growing"' termRef={termRef} setHomeStage={setHomeStage} />
+				</Route>
+				<Route path='/songs-and-poems/my-winds'>
+					<MyBride title='"My Winds"' termRef={termRef} setHomeStage={setHomeStage} />
+				</Route>
+				<Route path='/songs-and-poems/bompa'>
+					<Bompa title='"Bompa"' termRef={termRef} setHomeStage={setHomeStage} />
+				</Route>
+				<Route path='/songs-and-poems'>
+					<Songs title='Songs and Poems' termRef={termRef} setHomeStage={setHomeStage} />
+				</Route>
+				<Route path='/about/links'>
+					<AboutLinks title='About Me | Links' termRef={termRef} setHomeStage={setHomeStage} />
+				</Route>
+				<Route path='/about'>
+					<AboutMe title='About Me' termRef={termRef} setHomeStage={setHomeStage} />
+				</Route>
+				<Route exact path='/'>
+					<Intro title='Intro' termRef={termRef} setHomeStage={setHomeStage} setStage={setStage} />
+				</Route>
+				<Route path='*'>
+					<Home title='Home' termRef={termRef} setHomeStage={setHomeStage} />
+				</Route>
+			</Switch>
 			<HomeContent
 				stage={stage}
 				style={{ zIndex: -10 }}
 				className='bg-gray-700 fixed left-0 top-0 h-full w-full object-cover object-center'
 				setNeedsRestage={setNeedsRestage}
 			/>
-		</>
+		</Router>
 	)
-	// <div className='h-screen' />
-	// <div className='bg-black bg-opacity-80 text-white text-xs w-full px-8 py-4 flex flex-row place-content-between'>
-	// 	<p>mikey at mikeylemmon.com</p>
-	// 	<p>Mikey Lemmon &copy; 2021</p>
-	// </div>
 }
 
 export default App

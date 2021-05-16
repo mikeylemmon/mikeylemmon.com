@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
-import { PageProps } from 'pages/Page'
+import { PageProps, useTitle } from 'pages/Page'
 import TermLink from 'components/TermLink'
 
 type Props = PageProps
 
-const Home: React.FC<Props> = ({ termRef, setHomeStage }) => {
+const Home: React.FC<Props> = ({ termRef, title, setHomeStage }) => {
+	useTitle(title)
 	useEffect(() => {
 		const term = termRef.current
 		if (!term) {

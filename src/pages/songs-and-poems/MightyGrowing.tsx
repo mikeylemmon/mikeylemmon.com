@@ -13,24 +13,24 @@ const MightyGrowing: React.FC<Props> = (props: Props) => (
 	<Poem
 		{...props}
 		small={true}
-		progress={[300, { speed: 0 }, '...............', { speed: -4000 }, '.', { speed: 0 }, 'end']}
+		progress={[300, { speed: 0 }, '...............', { speed: -3700 }, '.', { speed: 0 }, 'end']}
 		lines={[
 			[{ speed }, breath * 2, `I found jesus`],
-			[{ speed: 0 }, indent, { speed }, breath / 4, `${indent}and the devil set me free`],
+			[{ speed: 0 }, indent, { speed }, breath / 2, `${indent}and the devil set me free`],
 			[{ speed }, breath, `I found the devil`],
-			[{ speed: 0 }, indent, { speed }, breath / 4, `${indent}and the savior lives in me`],
+			[{ speed: 0 }, indent, { speed }, breath / 2, `${indent}and the savior lives in me`],
 			[{ speed }, breath, `I found the darkness`],
-			[{ speed: 0 }, indent, { speed }, breath / 4, `${indent}at the center of my soul`],
+			[{ speed: 0 }, indent, { speed }, breath / 2, `${indent}at the center of my soul`],
 			[{ speed }, breath, `I found the light`],
-			[{ speed: 0 }, indent, { speed }, breath / 4, `${indent}and the darkness made me whole`],
+			[{ speed: 0 }, indent, { speed }, breath / 2, `${indent}and the darkness made me whole`],
 			[{ speed }, breath, ` `],
 			[{ speed }, breath, `I found time`],
-			[{ speed: 0 }, indent, { speed }, breath / 4, `${indent}upside-down within my brain`],
-			[{ speed }, breath, `puddles rising up to heaven`],
-			[{ speed: 0 }, indent, { speed }, breath / 4, `${indent}shatters forming into panes`],
+			[{ speed: 0 }, indent, { speed }, breath / 2, `${indent}upside-down within my brain`],
+			[{ speed }, breath, `Puddles rising up to heaven`],
+			[{ speed: 0 }, indent, { speed }, breath / 2, `${indent}shatters forming into panes`],
 			[{ speed }, breath, `I felt the soil`],
-			[{ speed: 0 }, indent, { speed }, breath / 4, `${indent}touched the earth of the unknown`],
-			[{ speed }, breath, `there's a mighty growing`],
+			[{ speed: 0 }, indent, { speed }, breath / 2, `${indent}touched the earth of the unknown`],
+			[{ speed }, breath, `There's a mighty growing`],
 			[{ speed: 0 }, indent, { speed }, breath, `${indent}underneath the snow`],
 		]}
 	/>

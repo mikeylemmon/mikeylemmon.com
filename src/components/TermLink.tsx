@@ -31,13 +31,18 @@ const TermLink: React.FC<Props> = ({ children, to, soft }) => (
 export default TermLink
 
 type ActionProps = { onClick: MouseEventHandler<HTMLAnchorElement>; soft?: boolean }
-export const TermAction: React.FC<ActionProps> = ({ children, onClick, soft }) => (
-	<a
-		href='#play'
-		className={soft ? linkClassesSoft : linkClassesHard}
-		onClick={onClick}
-		style={{ zIndex: 10 }}
-	>
-		{children}
-	</a>
-)
+export const TermAction: React.FC<ActionProps> = ({ children, onClick, soft }) => {
+	var firstWord = JSON.stringify(children)
+		.replace(/.*?(\w+).*/, '$1')
+		.toLowerCase()
+	return (
+		<a
+			href={`#${encodeURIComponent(firstWord)}`}
+			className={soft ? linkClassesSoft : linkClassesHard}
+			onClick={onClick}
+			style={{ zIndex: 10 }}
+		>
+			{children}
+		</a>
+	)
+}

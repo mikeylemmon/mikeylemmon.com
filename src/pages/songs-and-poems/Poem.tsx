@@ -1,6 +1,6 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { withRouter } from 'react-router-dom'
-import { PageProps } from 'pages/Page'
+import { PageProps, useTitle } from 'pages/Page'
 import Term, { Line } from 'components/Term'
 import { TermAction } from 'components/TermLink'
 import { textContentPage, textContentWrap, textContentTerm } from 'appStyles'
@@ -12,10 +12,11 @@ type Props = PageProps & {
 	small?: boolean
 }
 
-const Poem: React.FC<Props> = ({ lines, location, progress, small, setHomeStage, termRef }) => {
+const Poem: React.FC<Props> = ({ lines, location, progress, small, setHomeStage, termRef, title }) => {
 	const songRef: MutableRefObject<Term | null> = useRef(null)
 	const [play, setPlay] = useState(false)
 	const page = linkForPath(location.pathname)
+	useTitle(title)
 	useEffect(() => {
 		const term = termRef.current
 		if (!term) {
@@ -44,7 +45,7 @@ const Poem: React.FC<Props> = ({ lines, location, progress, small, setHomeStage,
 								])
 							}}
 						>
-							Play '{page.title}'
+							Play "{page.title}"
 						</TermAction>,
 					),
 			],

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
-import { PagePropsSetStage } from 'pages/Page'
+import { PagePropsSetStage, useTitle } from 'pages/Page'
 import Term from 'components/Term'
 import TermLink, { TermAction } from 'components/TermLink'
 
@@ -144,11 +144,10 @@ const setLinks = (term: Term, id: number, fill: boolean, setFill: (fill: boolean
 		>
 			{fill ? 'Fit' : 'Fill'}
 		</TermAction>,
-		// ...relativeLinks(id),
 	)
 }
 
-const Gallery: React.FC<Props> = ({ termRef, setStage, match, history }) => {
+const Gallery: React.FC<Props> = ({ termRef, title, setStage, match, history }) => {
 	let matchId = parseInt(match.params.id)
 	if (isNaN(matchId)) {
 		matchId = 0
@@ -157,6 +156,7 @@ const Gallery: React.FC<Props> = ({ termRef, setStage, match, history }) => {
 	const [didInit, setDidInit] = useState(false)
 	const [fullToggle, setFullToggle] = useState(false)
 	const [fill, setFill] = useState(false)
+	useTitle(title)
 	useEffect(() => {
 		const term = termRef.current
 		if (!term) {
