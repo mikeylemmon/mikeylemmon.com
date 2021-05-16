@@ -24,7 +24,7 @@ const AboutMe: React.FC<Props> = ({ termRef, title, setHomeStage }) => {
 				'> menu about',
 				() => {
 					term.setLinks(
-						<TermLink key='back' to='/menu' soft>
+						<TermLink key='back' to='/home' soft>
 							&lt; Home
 						</TermLink>,
 						<TermLink key='menu-3' to='/about/links'>

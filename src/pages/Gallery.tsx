@@ -132,7 +132,7 @@ export const relativeLinks = (id: number) => {
 
 const setLinks = (term: Term, id: number, fill: boolean, setFill: (fill: boolean) => void) => {
 	term.setLinks(
-		<TermLink key='back' to='/menu' soft>
+		<TermLink key='back' to='/home' soft>
 			&lt; Home
 		</TermLink>,
 		<TermAction

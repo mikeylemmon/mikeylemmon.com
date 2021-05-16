@@ -21,7 +21,7 @@ const Songs: React.FC<PageProps> = ({ termRef, title, setHomeStage }) => {
 				'> menu songs-and-poems',
 				() =>
 					term.setLinks(
-						<TermLink key='back' to='/menu' soft>
+						<TermLink key='back' to='/home' soft>
 							&lt; Home
 						</TermLink>,
 						...links.map(({ to, title }, ii) => (
