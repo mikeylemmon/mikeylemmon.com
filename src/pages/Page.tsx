@@ -7,7 +7,7 @@ export const BaseTitle = "Mikey's Website"
 
 export const useTitle = (title: string) =>
 	useEffect(() => {
-		document.title = `${BaseTitle} | ${title}`
+		document.title = `${title} | ${BaseTitle}`
 	}, [title])
 
 export type PagePropsCommon = RouteComponentProps & {

@@ -151,6 +151,7 @@ class Term extends React.Component<TermProps, TermState> {
 		return (
 			<>
 				<div
+					data-nosnippet={!noLinks}
 					key='term'
 					className={className || termClassesNoLinks}
 					style={{ zIndex, ...{ ...(style || {}) } }}
@@ -160,7 +161,7 @@ class Term extends React.Component<TermProps, TermState> {
 				</div>
 				{!noLinks && !hidden && (
 					<nav>
-						<div key='term-links' className={termClassesLinks} style={{ zIndex }}>
+						<div data-nosnippet key='term-links' className={termClassesLinks} style={{ zIndex }}>
 							{links}
 						</div>
 					</nav>

@@ -65,8 +65,12 @@ const AboutMe: React.FC<Props> = ({ termRef, title, setHomeStage }) => {
 								@mikey1emmon
 							</a>
 						</p>
-						<p className={label}>email:</p>
-						<p className='mb-3 col-span-3'>mikey [at] mikeylemmon.com</p>
+						<p className={label}>
+							<span data-nosnippet>email:</span>
+						</p>
+						<p className='mb-3 col-span-3'>
+							<span data-nosnippet>mikey [at] mikeylemmon.com</span>
+						</p>
 					</div>
 				</Term>
 			</div>

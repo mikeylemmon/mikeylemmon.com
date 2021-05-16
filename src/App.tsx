@@ -63,7 +63,7 @@ const App: React.FC = () => {
 					<Songs title='Songs and Poems' termRef={termRef} setHomeStage={setHomeStage} />
 				</Route>
 				<Route path='/about/links'>
-					<AboutLinks title='About Me | Links' termRef={termRef} setHomeStage={setHomeStage} />
+					<AboutLinks title='Links' termRef={termRef} setHomeStage={setHomeStage} />
 				</Route>
 				<Route path='/about'>
 					<AboutMe title='About Me' termRef={termRef} setHomeStage={setHomeStage} />
