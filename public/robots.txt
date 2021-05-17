@@ -1,4 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Sitemap: https://mikeylemmon.com/sitemap.txt
+Sitemap: https://mikeylemmon.com/sitemap.xml
 Disallow:
