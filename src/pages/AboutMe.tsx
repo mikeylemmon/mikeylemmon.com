@@ -80,7 +80,7 @@ const AboutMe: React.FC<Props> = ({ termRef, title, setHomeStage }) => {
 					<p className='text-lg mb-6'>
 						I studied in fits and starts at Brigham Young University (computer science), Columbia
 						University (music), Victoria University of Wellington (computer systems engineering),
-						and The New Zealand School of Music (composition). Last year I completed my only
+						and The New Zealand School of Music (composition). This year I completed my only
 						degree, a Bachelor's of Music in Vocal and Instrumental Composition from the New
 						Zealand School of Music.
 					</p>
