@@ -10,6 +10,7 @@ const linkClasses = [
 	'px-6',
 	'text-md',
 	'rounded-md',
+	// 'whitespace-nowrap',
 ].join(' ')
 const linkClassesSoft =
 	linkClasses +

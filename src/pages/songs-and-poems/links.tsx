@@ -7,6 +7,8 @@ const links = [
 	{ to: `${base.to}/a-mighty-growing`, title: 'A Mighty Growing' },
 	{ to: `${base.to}/my-winds`, title: 'My Winds' },
 	{ to: `${base.to}/bompa`, title: 'Bompa' },
+	{ to: `${base.to}/bliss`, title: 'Bliss' },
+	{ to: `${base.to}/bliss-part-2`, title: 'Bliss (Part 2)', hidden: true },
 ]
 export default links
 
@@ -20,7 +22,12 @@ export const linkForPath = (path: string) => {
 	return links[ii % links.length]
 }
 
-export const relativeLinks = (path: string, ended = false) => {
+type RelativeLinksOpts = {
+	ended?: boolean
+	nextTitle?: string
+}
+export const relativeLinks = (path: string, opts: RelativeLinksOpts = {}) => {
+	const { ended, nextTitle } = opts
 	let ii = 0
 	for (ii = 0; ii < links.length; ii++) {
 		if (links[ii].to === path) {
@@ -44,7 +51,7 @@ export const relativeLinks = (path: string, ended = false) => {
 	if (ii !== links.length - 1) {
 		elems.push(
 			<TermLink key='link-2' to={links[next].to} soft={!ended}>
-				Next
+				{nextTitle || 'Next'}
 			</TermLink>,
 		)
 	}
