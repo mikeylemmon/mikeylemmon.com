@@ -57,8 +57,10 @@ const termClassesLinks =
 		`mt-${termHeight}`,
 		'space-y-2',
 		'md:flex-row',
-		'md:space-x-4',
+		'md:flex-wrap',
+		// 'md:space-x-4',
 		'md:space-y-0',
+		'md:gap-4',
 	].join(' ')
 
 class Term extends React.Component<TermProps, TermState> {

@@ -60,6 +60,11 @@ module.exports = {
 			colors: { gray: colors.warmGray, cool: colors.coolGray },
 			boxShadow: { term: '0 5px 20px 3px rgba(0, 0, 0, 0.4)' },
 			screens: { hov: { raw: '(hover: hover)' } },
+			gridTemplateColumns: {
+				auto: 'repeat(auto-fit, minmax(0, 1fr))',
+				// auto: '1fr 1fr 1fr 1fr',
+				foo: '1fr 1fr 1fr 1fr',
+			},
 		},
 		fontFamily: {
 			sans:

@@ -24,11 +24,14 @@ const Songs: React.FC<PageProps> = ({ termRef, title, setHomeStage }) => {
 						<TermLink key='back' to='/home' soft>
 							&lt; Home
 						</TermLink>,
-						...links.map(({ to, title }, ii) => (
-							<TermLink key={`link-${ii}`} to={to}>
-								{title}
-							</TermLink>
-						)),
+						...links.map(({ to, title, hidden }, ii) => {
+							if (hidden) return <></>
+							return (
+								<TermLink key={`link-${ii}`} to={to}>
+									{title}
+								</TermLink>
+							)
+						}),
 					),
 			],
 		])

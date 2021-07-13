@@ -8,11 +8,12 @@ import { linkForPath, relativeLinks } from './links'
 
 type Props = PageProps & {
 	lines: Line[]
+	nextTitle?: string
 	progress: Line
 	small?: boolean
 }
 
-const Poem: React.FC<Props> = ({ lines, location, progress, small, setHomeStage, termRef, title }) => {
+const Poem: React.FC<Props> = ({ lines, location, nextTitle, progress, small, setHomeStage, termRef, title }) => {
 	const songRef: MutableRefObject<Term | null> = useRef(null)
 	const [play, setPlay] = useState(false)
 	const page = linkForPath(location.pathname)
@@ -32,16 +33,16 @@ const Poem: React.FC<Props> = ({ lines, location, progress, small, setHomeStage,
 				`> menu '${page.title}'`,
 				() =>
 					term.setLinks(
-						...relativeLinks(location.pathname),
+						...relativeLinks(location.pathname, { nextTitle }),
 						<TermAction
 							key='link-play'
 							onClick={() => {
 								setPlay(true)
-								term.setLinks(...relativeLinks(location.pathname))
+								term.setLinks(...relativeLinks(location.pathname, { nextTitle }))
 								term.typeLines([
 									[{ speed: 24 }, `> play '${page.title}'`],
 									progress,
-									[() => term.setLinks(...relativeLinks(location.pathname, true))],
+									[() => term.setLinks(...relativeLinks(location.pathname, { nextTitle, ended: true }))],
 								])
 							}}
 						>
