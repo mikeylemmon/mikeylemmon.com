@@ -7,7 +7,7 @@ const links = [
 	{ to: `${base.to}/a-mighty-growing`, title: 'A Mighty Growing' },
 	{ to: `${base.to}/my-winds`, title: 'My Winds' },
 	{ to: `${base.to}/bompa`, title: 'Bompa' },
-	{ to: `${base.to}/bliss`, title: 'Bliss' },
+	{ to: `${base.to}/bliss`, title: 'Bliss', hidden: true },
 	{ to: `${base.to}/bliss-part-2`, title: 'Bliss (Part 2)', hidden: true },
 ]
 export default links
