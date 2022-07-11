@@ -69,9 +69,13 @@ const AboutMe: React.FC<Props> = ({ termRef, title, setHomeStage }) => {
 						>
 							visual effects artist
 						</a>
-						, a web developer, and most recently as a system architect and engineering manager in
-						my current role as the CTO at{' '}
-						<a className={link} href='https://gnarbox.com' target='_blank' rel='noreferrer'>
+						, a web developer, and as a system architect and engineering manager as the CTO at{' '}
+						<a
+							className={link}
+							href='https://www.google.com/search?q=gnarbox'
+							target='_blank'
+							rel='noreferrer'
+						>
 							GNARBOX
 						</a>
 						.
@@ -80,7 +84,7 @@ const AboutMe: React.FC<Props> = ({ termRef, title, setHomeStage }) => {
 					<p className='text-lg mb-6'>
 						I studied in fits and starts at Brigham Young University (computer science), Columbia
 						University (music), Victoria University of Wellington (computer systems engineering),
-						and The New Zealand School of Music (composition). This year I completed my only
+						and The New Zealand School of Music (composition). Last year I completed my only
 						degree, a Bachelor's of Music in Vocal and Instrumental Composition from the New
 						Zealand School of Music.
 					</p>
