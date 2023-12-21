@@ -43,6 +43,14 @@ const AboutMe: React.FC<Props> = ({ termRef, title, setHomeStage }) => {
 			<div className={textContentWrap}>
 				<Term className={textContentTerm} noLinks>
 					<p className='text-lg mb-6'>
+						I'm an artist and engineer based in Aotearoa New Zealand. My latest project is{' '}
+						<a className={link} href='https://thrivestone.com' target='_blank' rel='noreferrer'>
+							ThriveCam
+						</a>
+						, a trippy camera app.
+					</p>
+
+					<p className='text-lg mb-6'>
 						Over the last two decades I've worked as a{' '}
 						<a
 							className={link}
@@ -77,23 +85,15 @@ const AboutMe: React.FC<Props> = ({ termRef, title, setHomeStage }) => {
 							rel='noreferrer'
 						>
 							GNARBOX
-						</a>
-						.
-					</p>
-
-					<p className='text-lg mb-6'>
-						I studied in fits and starts at Brigham Young University (computer science), Columbia
-						University (music), Victoria University of Wellington (computer systems engineering),
-						and The New Zealand School of Music (composition). Last year I completed my only
-						degree, a Bachelor's of Music in Vocal and Instrumental Composition from the New
-						Zealand School of Music.
+						</a>{' '}
+						(now sadly defunct).
 					</p>
 
 					<p className='text-lg mb-6'>
 						About ten years ago I started experimenting with feedback algorithms and was awed by
-						the complex forms and behaviors that feedback systems can manifest, providing glimpses
-						of a seemingly infinite well of life that exists within mathematics itself. Since
-						those initial experiments began, I have been developing and applying feedback
+						the complex forms and behaviors that iterative systems can manifest, providing
+						glimpses of a seemingly infinite well of life that exists within mathematics itself.
+						Since those initial experiments began, I have been developing and applying feedback
 						techniques to create apps, apparel, VR experiences, and digital works of art. Through
 						these experiments, I have come to see life flourishing well beyond the confines of
 						organic matter — I see living organisms in languages, in organizations, in economic

@@ -1,13 +1,13 @@
-import React, { createRef, MutableRefObject } from 'react'
+import React, { createRef, MutableRefObject, PropsWithChildren } from 'react'
 import { typer } from './typical'
 
-type TermProps = {
+type TermProps = PropsWithChildren<{
 	className?: string
 	style?: any
 	preClassName?: string
 	preFill?: string
 	noLinks?: boolean
-}
+}>
 
 export type Line = Array<string | number | (() => void) | { speed: number }>
 type TermSeq = {

@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react'
+import React, { MouseEventHandler, PropsWithChildren } from 'react'
 import { Link } from 'react-router-dom'
 
 const linkClasses = [
@@ -21,7 +21,7 @@ const linkClassesHard =
 	' ' +
 	['bg-purple-900', 'md:hover:bg-purple-700', 'bg-opacity-80', 'md:hover:bg-opacity-80'].join(' ')
 
-type Props = { to: string; soft?: boolean }
+type Props = PropsWithChildren<{ to: string; soft?: boolean }>
 
 const TermLink: React.FC<Props> = ({ children, to, soft }) => (
 	<Link to={to} className={soft ? linkClassesSoft : linkClassesHard} style={{ zIndex: 10 }}>
@@ -31,7 +31,7 @@ const TermLink: React.FC<Props> = ({ children, to, soft }) => (
 
 export default TermLink
 
-type ActionProps = { onClick: MouseEventHandler<HTMLAnchorElement>; soft?: boolean }
+type ActionProps = PropsWithChildren<{ onClick: MouseEventHandler<HTMLAnchorElement>; soft?: boolean }>
 export const TermAction: React.FC<ActionProps> = ({ children, onClick, soft }) => {
 	var firstWord = JSON.stringify(children)
 		.replace(/.*?(\w+).*/, '$1')

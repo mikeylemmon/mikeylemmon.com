@@ -72,6 +72,11 @@ const AboutMe: React.FC<Props> = ({ termRef, title, setHomeStage }) => {
 							<span data-nosnippet>mikey [at] mikeylemmon.com</span>
 						</p>
 					</div>
+					<p className='text-lg mb-6'>
+						If reaching out to me, please note that I have autism and that my energy for digital
+						correspondence can fluctuate and is generally quite low &mdash; it may take me a while
+						to get back to you.
+					</p>
 				</Term>
 			</div>
 		</div>

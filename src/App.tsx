@@ -15,8 +15,6 @@ import GivenTime from 'pages/songs-and-poems/GivenTime'
 import MightyGrowing from 'pages/songs-and-poems/MightyGrowing'
 import MyBride from 'pages/songs-and-poems/MyBride'
 import Bompa from 'pages/songs-and-poems/Bompa'
-import Bliss from 'pages/songs-and-poems/Bliss'
-import Bliss2 from 'pages/songs-and-poems/Bliss2'
 import AboutMe from 'pages/AboutMe'
 import AboutLinks from 'pages/AboutLinks'
 
@@ -60,12 +58,6 @@ const App: React.FC = () => {
 				</Route>
 				<Route path='/songs-and-poems/bompa'>
 					<Bompa title='"Bompa"' termRef={termRef} setHomeStage={setHomeStage} />
-				</Route>
-				<Route path='/songs-and-poems/bliss'>
-					<Bliss title='"Bliss"' termRef={termRef} setHomeStage={setHomeStage} />
-				</Route>
-				<Route path='/songs-and-poems/bliss-part-2'>
-					<Bliss2 title='"Bliss (Part 2)"' termRef={termRef} setHomeStage={setHomeStage} />
 				</Route>
 				<Route path='/songs-and-poems'>
 					<Songs title='Songs and Poems' termRef={termRef} setHomeStage={setHomeStage} />
