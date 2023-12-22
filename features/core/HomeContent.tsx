@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { FC, MutableRefObject, useEffect, useRef } from 'react'
 import { usePageVisibility } from './pageVisibility'
 
 export type HomeContentStage =
@@ -32,9 +32,9 @@ type HomeContentElemProps = {
 	isVisible?: boolean
 }
 
-const Vid: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
+const Vid: FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
 	const { sources, srcStage, stage, style, className, isVisible } = props
-	const ref: React.MutableRefObject<HTMLVideoElement | null> = useRef(null)
+	const ref: MutableRefObject<HTMLVideoElement | null> = useRef(null)
 	useEffect(() => {
 		// console.log(`isVisible=${isVisible}`)
 		if (!ref.current || !isVisible) {
@@ -68,7 +68,7 @@ const Vid: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
 	)
 }
 
-const Thrive0: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
+const Thrive0: FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
 	const { stage, style } = props
 	if (stage.match(/thrive1|menu/)) {
 		return null
@@ -86,7 +86,7 @@ const Thrive0: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) =>
 	})
 }
 
-const Thrive1: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
+const Thrive1: FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
 	const { stage, style } = props
 	const zz = style.zIndex
 	const ss = { zIndex: stage !== 'thrive1' ? zz : zz + 1 }
@@ -101,9 +101,8 @@ const Thrive1: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) =>
 	})
 }
 
-const Mikey: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
+const Mikey: FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
 	const { className, stage, style } = props
-	// if (!stage.match(/intro|mikey/)) {
 	if (!stage.match(/mikey/)) {
 		return null
 	}
@@ -112,10 +111,11 @@ const Mikey: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
 	if (stage.match(/mikey/)) {
 		ss.zIndex += 1
 	}
+	// eslint-disable-next-line @next/next/no-img-element
 	return <img {...{ className, src, style: ss, alt: 'Mikey' }} />
 }
 
-const Intro: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
+const Intro: FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
 	const { className, stage, style } = props
 	if (!stage.match(/intro/)) {
 		return null
@@ -123,7 +123,7 @@ const Intro: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
 	return <div className={className} style={{ zIndex: style.zIndex + 1 }} />
 }
 
-const HomeContent: React.FC<HomeContentProps> = props => {
+const HomeContent: FC<HomeContentProps> = props => {
 	const { setNeedsRestage, stage } = props
 	const isVisible = usePageVisibility(setNeedsRestage)
 	useEffect(() => setNeedsRestage(false), [stage, setNeedsRestage])

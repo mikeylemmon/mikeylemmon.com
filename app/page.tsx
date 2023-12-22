@@ -1,13 +1,12 @@
 'use client'
 import React, { useEffect } from 'react'
-import { PageProps, PagePropsSetStage, useTitle } from '@/features/core/Page'
 import TermLink from '@/features/term/TermLink'
 import { useApp } from '@/features/core/AppProvider'
 import { useRouter } from 'next/navigation'
 
-type Props = PageProps & PagePropsSetStage
+type Props = {}
 
-const Intro: React.FC<Props> = props => {
+const Intro: React.FC<Props> = () => {
 	const { termRef, setStage, setHomeStage } = useApp()
 	const history = useRouter()
 
