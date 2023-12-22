@@ -1,0 +1,68 @@
+'use client'
+import {
+	Dispatch,
+	FC,
+	PropsWithChildren,
+	RefObject,
+	SetStateAction,
+	createContext,
+	createRef,
+	useContext,
+	useRef,
+	useState,
+} from 'react'
+import Term from '../term/Term'
+import { HomeContentStage } from './HomeContent'
+
+type AppCtx = {
+	termRef: RefObject<Term>
+	stage: HomeContentStage
+	needsRestage: boolean
+	setStage: Dispatch<SetStateAction<HomeContentStage>>
+	setHomeStage: () => void
+	setNeedsRestage: Dispatch<SetStateAction<boolean>>
+}
+
+const AppContext = createContext<AppCtx>({
+	termRef: createRef(),
+	stage: 'intro',
+	needsRestage: false,
+	setStage: () => undefined,
+	setHomeStage: () => undefined,
+	setNeedsRestage: () => undefined,
+})
+
+export const AppProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
+	const termRef = useRef<Term>(null)
+	const [stage, setStage] = useState<HomeContentStage>('intro')
+	const [needsRestage, setNeedsRestage] = useState<boolean>(false)
+	const setHomeStage = () => {
+		if (needsRestage) {
+			// restage solves some issues with bg video not playing
+			// after returning to the page on mobile by briefly
+			// disabling the video
+			setStage('intro')
+			setTimeout(() => setStage('thrive1'), 16)
+		} else {
+			setStage('thrive1')
+		}
+	}
+
+	return (
+		<AppContext.Provider
+			value={{
+				termRef,
+				stage,
+				needsRestage,
+				setStage,
+				setHomeStage,
+				setNeedsRestage,
+			}}
+		>
+			<Term ref={termRef} />
+			{children}
+		</AppContext.Provider>
+	)
+}
+
+export const useApp = () => useContext(AppContext)
