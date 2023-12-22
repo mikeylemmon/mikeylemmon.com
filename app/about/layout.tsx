@@ -1,0 +1,8 @@
+import Passthru from '@/features/core/Passthru'
+import { Metadata } from 'next'
+export default Passthru
+
+export const metadata: Metadata = {
+	title: 'About Me',
+	description: 'One of the infinitely many possible answers to the question "Who is Mikey Lemmon?"',
+}

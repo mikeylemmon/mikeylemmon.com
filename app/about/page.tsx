@@ -1,13 +1,12 @@
 'use client'
-import { useApp } from '@/features/core/AppProvider'
 import { link, textContentPage, textContentTerm, textContentWrap } from '@/features/core/appStyles'
 import Term from '@/features/term/Term'
+import { FC, useEffect } from 'react'
+import { useApp } from '@/features/core/AppProvider'
 import TermLink from '@/features/term/TermLink'
-import React, { useEffect } from 'react'
 
 type Props = {}
-
-const AboutMe: React.FC<Props> = () => {
+const AboutMe: FC<Props> = () => {
 	const { termRef, setHomeStage } = useApp()
 
 	useEffect(() => {
@@ -48,7 +47,8 @@ const AboutMe: React.FC<Props> = () => {
 						<a className={link} href='https://thrivestone.com' target='_blank' rel='noreferrer'>
 							ThriveCam
 						</a>
-						, a camera app for interacting with digital wildlife.
+						, a camera app for interacting with what I rather brazenly refer to as digital
+						wildlife.
 					</p>
 
 					<p className='text-lg mb-6'>

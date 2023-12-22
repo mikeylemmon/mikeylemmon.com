@@ -32,7 +32,7 @@ const fontClasses = [inter.variable, notoMono.variable, sweden.variable, swedenB
 
 export const metadata: Metadata = {
 	title: "Mikey's Website",
-	description: 'The very impressive website of Mikey Lemmon',
+	description: 'The very impressive personal website of Mikey Lemmon',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
