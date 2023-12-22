@@ -63,9 +63,7 @@ const Vid: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
 	}, [isVisible, srcStage, stage])
 	return (
 		<video {...{ className, style }} ref={ref} loop={true} muted={true} playsInline={true} preload='auto'>
-			{sources?.map((ss, ii) => (
-				<source key={`${srcStage}-${ii}`} src={ss.src} type={ss.type} />
-			))}
+			{sources?.map((ss, ii) => <source key={`${srcStage}-${ii}`} src={ss.src} type={ss.type} />)}
 		</video>
 	)
 }
@@ -105,7 +103,8 @@ const Thrive1: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) =>
 
 const Mikey: React.FC<HomeContentElemProps> = (props: HomeContentElemProps) => {
 	const { className, stage, style } = props
-	if (!stage.match(/intro|mikey/)) {
+	// if (!stage.match(/intro|mikey/)) {
+	if (!stage.match(/mikey/)) {
 		return null
 	}
 	const src = `/assets/images/${stage}.jpg`

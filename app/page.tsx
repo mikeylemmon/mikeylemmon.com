@@ -7,12 +7,10 @@ import { useRouter } from 'next/navigation'
 
 type Props = PageProps & PagePropsSetStage
 
-// const Intro: React.FC<Props> = ({ termRef, title, setStage, setHomeStage, history }) => {
 const Intro: React.FC<Props> = props => {
 	const { termRef, setStage, setHomeStage } = useApp()
 	const history = useRouter()
-	console.log('Page props:', props)
-	// useTitle(title)
+
 	useEffect(() => {
 		const term = termRef.current
 		if (!term) {

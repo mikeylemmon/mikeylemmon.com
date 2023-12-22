@@ -1,12 +1,13 @@
 import type { Config } from 'tailwindcss'
 import colors from 'tailwindcss/colors'
 
+const termHeight = '20'
+
 const config: Config = {
-	content: [
-		'./pages/**/*.{js,ts,jsx,tsx,mdx}',
-		'./components/**/*.{js,ts,jsx,tsx,mdx}',
-		'./app/**/*.{js,ts,jsx,tsx,mdx}',
-	],
+	content: ['./app/**/*.{js,ts,jsx,tsx,mdx}', './features/**/*.{js,ts,jsx,tsx,mdx}'],
+
+	safelist: [`bottom-minus${termHeight}`, `min-h-${termHeight}`, `mt-${termHeight}`],
+
 	theme: {
 		extend: {
 			backgroundImage: {
