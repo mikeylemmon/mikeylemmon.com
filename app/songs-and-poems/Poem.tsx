@@ -84,7 +84,7 @@ const Poem: FC<Props> = ({ lines, nextTitle, progress, small }) => {
 	return (
 		<div className={textContentPage}>
 			<div className={textContentWrap}>
-				<h1 className='font-mono mt-14 underline'>{page.title}</h1>
+				<h1 className='font-mono mt-14 underline text-black'>{page.title}</h1>
 				<Term
 					ref={songRef}
 					className={textContentTerm}

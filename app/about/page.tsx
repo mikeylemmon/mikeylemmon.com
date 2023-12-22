@@ -38,11 +38,12 @@ const AboutMe: FC<Props> = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [termRef])
 
+	const pStyle = 'text-lg mb-6 text-justify hyphens-auto'
 	return (
 		<div className={textContentPage}>
 			<div className={textContentWrap}>
 				<Term className={textContentTerm} noLinks>
-					<p className='text-lg mb-6'>
+					<p className={pStyle}>
 						{"I'm"} an artist and engineer based in Aotearoa New Zealand. My latest project is{' '}
 						<a className={link} href='https://thrivestone.com' target='_blank' rel='noreferrer'>
 							ThriveCam
@@ -51,7 +52,7 @@ const AboutMe: FC<Props> = () => {
 						wildlife.
 					</p>
 
-					<p className='text-lg mb-6'>
+					<p className={pStyle}>
 						Over the last couple decades {"I've"} worked as a{' '}
 						<a
 							className={link}
@@ -92,13 +93,13 @@ const AboutMe: FC<Props> = () => {
 						Zealand School of Music &mdash; Te Kōkī.
 					</p>
 
-					<p className='text-lg mb-6'>
+					<p className={pStyle}>
 						In 2011 I started experimenting with feedback algorithms and was awed by the complex
 						forms and behaviors that iterative systems can manifest, providing glimpses of a
 						seemingly infinite well of life-ishness that exists within mathematics itself.
 					</p>
 
-					<p className='text-lg mb-6'>
+					<p className={pStyle}>
 						Since those initial experiments began, I have been developing and applying feedback
 						techniques to create apps, apparel, VR experiences, and digital works of art, and I
 						have come to see life as flourishing well beyond the confines of organic matter — I
