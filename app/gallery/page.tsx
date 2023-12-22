@@ -97,13 +97,13 @@ const imgs = [
 
 const files: MediaFile[] = [...imgs.map(src => ({ src, kind: 'image' }))]
 
-export const prevNext = (id: number) => {
+const prevNext = (id: number) => {
 	const prev = (id + files.length - 1) % files.length
 	const next = (id + 1) % files.length
 	return { prev, next }
 }
 
-export const relativeLinks = (id: number) => {
+const relativeLinks = (id: number) => {
 	const { prev, next } = prevNext(id)
 	const elems = []
 	if (id !== 0) {

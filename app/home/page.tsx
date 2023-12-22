@@ -1,11 +1,9 @@
 'use client'
 import { FC, useEffect } from 'react'
 import TermLink from '@/features/term/TermLink'
-import { PageProps } from '@/features/core/Page'
 import { useApp } from '@/features/core/AppProvider'
 
-type Props = PageProps
-
+type Props = {}
 const Home: FC<Props> = () => {
 	const { termRef, setHomeStage } = useApp()
 	useEffect(() => {
