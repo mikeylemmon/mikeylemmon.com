@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
-import { withRouter } from 'react-router-dom'
-import { PageProps, useTitle } from 'pages/Page'
-import TermLink from 'components/TermLink'
-import links from 'pages/songs-and-poems/links'
+'use client'
+import { FC, useEffect } from 'react'
+import TermLink from '@/features/term/TermLink'
+import links from './links'
+import { useApp } from '@/features/core/AppProvider'
 
-const Songs: React.FC<PageProps> = ({ termRef, title, setHomeStage }) => {
-	useTitle(title)
+const Songs: FC<{}> = () => {
+	const { termRef, setHomeStage } = useApp()
 	useEffect(() => {
 		const term = termRef.current
 		if (!term) {
@@ -42,4 +42,4 @@ const Songs: React.FC<PageProps> = ({ termRef, title, setHomeStage }) => {
 	return null
 }
 
-export default withRouter(Songs)
+export default Songs

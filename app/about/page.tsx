@@ -88,14 +88,14 @@ const AboutMe: React.FC<Props> = () => {
 						>
 							GNARBOX
 						</a>
-						. Somewhere in there I got a Bachelors of Music in Composition from the New Zealand
-						School of Music &mdash; Te Kōkī.
+						. Somewhere in there I managed to get a Bachelors of Music in Composition from the New
+						Zealand School of Music &mdash; Te Kōkī.
 					</p>
 
 					<p className='text-lg mb-6'>
-						Quite a while ago I started experimenting with feedback algorithms and was awed by the
-						complex forms and behaviors that iterative systems can manifest, providing glimpses of
-						a seemingly infinite well of life-ishness that exists within mathematics itself.
+						In 2011 I started experimenting with feedback algorithms and was awed by the complex
+						forms and behaviors that iterative systems can manifest, providing glimpses of a
+						seemingly infinite well of life-ishness that exists within mathematics itself.
 					</p>
 
 					<p className='text-lg mb-6'>
