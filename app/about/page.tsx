@@ -46,10 +46,10 @@ const AboutMe: FC<Props> = () => {
 					<p className={pStyle}>
 						{"I'm"} an artist and engineer based in Aotearoa New Zealand. My latest project is{' '}
 						<a className={link} href='https://thrivestone.com' target='_blank' rel='noreferrer'>
-							ThriveCam
+							Thrivestone
 						</a>
-						, a camera app for interacting with what I rather brazenly refer to as digital
-						wildlife.
+						, camera app for interacting with what I rather brazenly refer to as digital wildlife,
+						along with some pretty sweet apparel I&apos;ve been designing with it.
 					</p>
 
 					<p className={pStyle}>
